@@ -30,6 +30,7 @@ Select your favorite recipes, get the list of associated ingredients and create 
 ## **Routes**
 ### /
 ### /selector
+### /search
 ### /recipe
 ### /ingredients
 ### /calendar
