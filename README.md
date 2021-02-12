@@ -1,6 +1,6 @@
 # **Click 'n Meal**
 
-[Click here to see deployed app](xxx)
+[Click here to see deployed app](https://click-n-meal.herokuapp.com/)
 
 ## **Description**
 Select your favorite recipes, get the list of associated ingredients and create a complete groceries list
@@ -80,6 +80,6 @@ Select your favorite recipes, get the list of associated ingredients and create 
 - [Trello Link](https://trello.com/b/MjmY8cAw/click-n-meal)
 - [Presentation Link](https://slides.com/cindytvn/deck)
 - [Github repository Link](https://github.com/degroot12/click-n-meal)
-- [Deployment Link](xxx)
+- [Deployment Link](https://click-n-meal.herokuapp.com/)
 
 
