@@ -83,13 +83,29 @@ const checkLoggedInUser = (req, res, next) => {
   }
 };
 
+
 router.get('/profile', checkLoggedInUser, (req, res, next) => {
   let email = req.session.loggedInUser.email;
-  res.render('profile.hbs', {email});
+  res.render('private/profile.hbs', {email});
 });
 
-// LOGOUT
+router.get('/create', checkLoggedInUser, (req, res, next) => {
+  let email = req.session.loggedInUser.email;
+  res.render('private/create.hbs', {email});
+})
 
+router.get('/edit', checkLoggedInUser, (req, res, next) => {
+  let email = req.session.loggedInUser.email;
+  res.render('private/edit.hbs', {email})
+})
+
+// router.get('/', checkLoggedInUserHome, (req, res, next) => {
+//   let email = req.session.loggedInUser.email;
+//   res.render('public/selector.hbs', {email})
+// })
+
+
+// LOGOUT
 router.get('/logout', (req, res) => {
   req.session.destroy();
   res.redirect('/');

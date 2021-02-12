@@ -45,11 +45,14 @@ app.use(session({
 
 
 // 👇 Start handling routes here
-const index = require("./routes/index");
-app.use("/", index);
+// const index = require("./routes/index");
+// app.use("/", index);
 
 const authRoutes = require('./routes/auth.routes');
 app.use('/', authRoutes);
+
+const publicRoutes = require('./routes/public.routes')
+app.use('/', publicRoutes);
 
 // ❗ To handle errors. Routes that don't exist or errors that you handle in specific routes
 require("./error-handling")(app);
