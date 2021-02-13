@@ -1,6 +1,7 @@
 const router = require('express').Router();
 const bcrypt = require('bcryptjs');
 const UserModel = require('../models/User.model.js')
+const RecipeModel = require('../models/Recipe.model.js')
 
 //
 const checkLoggedInUserHome = (req, res, next) => {
@@ -23,7 +24,11 @@ router.get('/recipe', (req, res, next) => {
 
 // GET Route for search page
 router.get('/search', (req, res, next) => {
-  res.render('public/search.hbs')
+  RecipeModel.find()
+    .then((recipes) => {
+      res.render('public/search.hbs', {recipes})
+    })
+  
 });
 
 // GET Route for Selector page
