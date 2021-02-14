@@ -54,6 +54,9 @@ app.use('/', authRoutes);
 const publicRoutes = require('./routes/public.routes')
 app.use('/', publicRoutes);
 
+const recipeRoutes = require('./routes/recipes.routes')
+app.use('/', recipeRoutes)
+
 // ❗ To handle errors. Routes that don't exist or errors that you handle in specific routes
 require("./error-handling")(app);
 
