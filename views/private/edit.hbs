@@ -1,1 +1,77 @@
 <h1>This is the edit page</h1>
+<form method="POST" action="/edit/{{recipe._id}}">
+  <div class="mb-3">
+    <label for="exampleInputEmail1" class="form-label">Name</label>
+    <input name="name" type="text" class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp" value="{{recipe.name}}">
+  </div>
+  <div class="mb-3">
+    <label for="exampleInputPassword1" class="form-label">Description</label>
+    <input name="description" type="text" class="form-control" id="exampleInputDescription1" value="{{recipe.description}}">
+  </div>
+    <div class="mb-3">
+    <label for="exampleInputPassword2" class="form-label">Ingredients</label>
+    <input name="ingredients" type="text" class="form-control" id="exampleInputDescription2" value="{{recipe.ingredients.name}}">
+  </div>
+ 
+  <div class="mb-3">
+    <label for="cars">Units:</label>
+    <select name="ingrUnit" id="cars" value="{{recipe.ingredients.unit}}">
+      <option value="g">g</option>
+      <option value="ml">ml</option>
+      <option value="l">l</option>
+      <option value="spoon">spoon</option>
+      <option value="tablespoon">tablespoon</option>
+      <option value="pinch">pinch</option>
+    </select>
+    <br><br>
+  </div>
+    <div class="mb-3">
+    <label for="exampleInputPassword2" class="form-label">Amount</label>
+    <input name="ingrAmount" type="text" class="form-control" id="exampleInputDescription2" value="{{recipe.ingredients.amount}}">
+  </div>
+  <div class="mb-3">
+    <label for="exampleInputPassword2" class="form-label">Instructions</label>
+    <input name="instructions" type="text" class="form-control" id="exampleInputDescription2" value="{{recipe.instructions}}">
+  </div>
+    <div class="mb-3">
+    <label for="cars">Type:</label>
+    <select name="mealType" id="cars">
+      <option value="meat">Meat</option>
+      <option value="vegatarian">Vegetarian</option>
+      <option value="vegan">Vegan</option>
+    </select>
+    <br><br>
+  </div>
+  <div class="mb-3">
+    <label for="exampleInputPassword2" class="form-label">Time</label>
+    <input name="time" type="number" class="form-control" id="exampleInputDescription2" value="{{recipe.time}}">
+  </div>
+  <div class="mb-3">
+    <label for="cars">Price:</label>
+    <select name="price" id="cars">
+      <option value="cheap">Cheap</option>
+      <option value="normal">Normal</option>
+      <option value="expensive">Expensive</option>
+    </select>
+    <br><br>
+  </div>
+    <div class="mb-3">
+    <label for="exampleInputPassword2" class="form-label">Image</label>
+    <input name="image" type="img" class="form-control" id="exampleInputDescription2" value="{{recipe.image}}">
+  </div>
+    <div class="mb-3">
+    <label for="exampleInputPassword2" class="form-label">Creator</label>
+    <input name="creator" type="text" class="form-control" id="exampleInputDescription2" value="{{recipe.creator}}">
+  </div>
+    <div class="mb-3">
+    <label for="exampleInputPassword2" class="form-label">Source</label>
+    <input name="source" type="text" class="form-control" id="exampleInputDescription2" value="{{recipe.source}}">
+  </div>
+  <button type="submit" class="btn btn-primary">Submit</button>
+</form>
+
+
+{{!-- Conditionally render the msg --}}
+{{#if msg}}
+ <div>{{msg}}</div>
+{{/if}}
