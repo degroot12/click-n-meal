@@ -1,1 +1,19 @@
 <h1>This is the selector page</h1>
+<div id="main">
+  <div id="search">
+    <form method="GET" action="/search">
+      <div class="mb-3">
+        <input name="recipe" placeholder="Enter your recipe" type="text" class="form-control" id="searchInput">
+      </div>
+      <button type="submit" class="btn btn-danger">Search for Recipes</button>
+    </form>
+    <div id="match-list">
+
+    </div>
+  </div>
+</div>
+
+{{#each recipes}}
+  <h4>{{this.title}}</h4>
+
+{{/each}}
