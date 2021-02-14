@@ -11,8 +11,26 @@ const RecipeSchema = new mongoose.Schema({
     type: String,
     enum: ['cheap', 'normal', 'expensive']
   },
-  ingredients: String
-  
+  ingredients: String,
+  rating: {
+    type: Number,
+    enum: [1, 2, 3, 4, 5]
+  },
+  source: String,
+  creator: String,
+  weekday: {
+    type: String,
+    enum: ['Monday', 'Tuesday', 'Wednesday', 'Thursday', 'Friday', 'Saturday', 'Sunday']
+  },
+  mealType: {
+    type: String,
+    enum: ['meat', 'vegetarian', 'vegan']
+  },
+  ingrAmount: Number,
+  ingrUnit: {
+    type: String,
+    enum: ['g', 'spoon', 'tablespoon', 'l', 'pinch', 'ml']
+  }
 });
 
 const RecipeModel = mongoose.model("recipe", RecipeSchema);
