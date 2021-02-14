@@ -1,6 +1,7 @@
 const router = require('express').Router();
 const bcrypt = require('bcryptjs');
 const UserModel = require('../models/User.model.js')
+const RecipeModel = require('../models/Recipe.model.js')
 
 //
 const checkLoggedInUserHome = (req, res, next) => {
@@ -23,11 +24,21 @@ router.get('/recipe', (req, res, next) => {
 
 // GET Route for search page
 router.get('/search', (req, res, next) => {
+  const searchTerm = req.query.searchInput
+  request('https://api.spoonacular.com/recipes/complexSearch?query=pasta&apiKey=62f15d05010744ed8127ef36815ed931', function(error, response, body) {
+      res.render('public/search.hbs', {recipes})
+  
+  })
   res.render('public/search.hbs')
+      
 });
 
 // GET Route for Selector page
 router.get('/selector', (req, res, next) => {
+  RecipeModel.find()
+  .then((recipes) => {
+    res.render('public/search.hbs', {recipes})
+  })
   res.render('public/selector.hbs')
 });
 
