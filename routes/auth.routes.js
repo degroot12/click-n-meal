@@ -28,7 +28,8 @@ router.post('/signup', (req, res, next) => {
     res.render('auth/signup', {msg: 'Email not in valid format'})
     return
   }
-  // PASWORD VALIDATION
+
+  // PASSWORD VALIDATION
   // let regexPass = /^(?=.*\d)(?=.*[A-Z])(?=.*[a-z])(?=.*[a-zA-Z!#$%&? "])[a-zA-Z0-9!#$%&?]{8,20}$/;
   // if (!regexPass.test(password)) {
   //    res.render('auth/signup', {msg: 'Password needs to have special characters, some numbers and be 6 characters atleast'})
