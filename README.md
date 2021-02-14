@@ -63,12 +63,12 @@ Select your favorite recipes, get the list of associated ingredients and create 
   - creator
   - weekday- for in the calendar view
   - type: vegan/vegetarian/meat
+  - amount
+  - unit
 
 - Ingredients
   - ref: to api
   - Name
-  - Amount
-  - Unit
   - Catagory
 
 ### main
