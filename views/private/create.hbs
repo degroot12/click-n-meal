@@ -1,38 +1,28 @@
 <h1>Create recipe</h1>
-<form method="POST" action="/create">
+
+
+<form >
   <div class="mb-3">
     <label for="exampleInputEmail1" class="form-label">Name</label>
-    <input name="name" type="text" class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp">
+    <input name="recipeName" type="text" class="form-control" id="recipeName" aria-describedby="emailHelp">
   </div>
   <div class="mb-3">
     <label for="exampleInputPassword1" class="form-label">Description</label>
-    <input name="description" type="text" class="form-control" id="exampleInputDescription1">
+    <input name="description" type="text" class="form-control" id="description">
   </div>
-  {{!-- <div>
-    {{#each allIngr}}
-      <div> test: {{this.name}} </div >     
-    {{/each}}
-  </div> --}}
-
 
     <div class="mb-3">
     <label for="exampleInputPassword2" class="form-label">Ingredients</label>
-    <select name="inglist" id="inglist">
+    <select name="ingrName" id="ingrList">
       {{#each allIngr}}
       <option value="{{this.name}}" {{#selected}}selected="selected"{{/selected}} >{{this.name}}</option>
       {{/each}}
     </select>
 
-      {{!-- <select name="config[pair]">
-    {{#each pairoption}}
-    <option value="{{value}}" {{#selected}}selected="selected"{{/selected}}>{{name}}</option>
-    {{/each}}
-  </select> --}}
-
   </div>
   <div class="mb-3">
     <label for="cars">Units:</label>
-    <select name="ingrUnit" id="cars">
+    <select name="ingrUnit" id="cars" >
       <option value="g">g</option>
       <option value="ml">ml</option>
       <option value="l">l</option>
@@ -44,12 +34,59 @@
   </div>
   <div class="mb-3">
     <label for="exampleInputPassword2" class="form-label">Amount</label>
-    <input name="ingrAmount" type="text" class="form-control" id="exampleInputDescription2">
+    <input name="ingrAmount" type="text" class="form-control" id="ingrAmount" required>
   </div>
 
 
   <div id="newElementId"></div>
   <script type="text/JavaScript">
+
+
+function submitHandler(){
+  console.log('Works Yayyy!')
+  let elemenUnit = document.getElementsByName('ingrUnit')
+  let elemenName = document.getElementsByName('ingrName')
+  let elemenAmount = document.getElementsByName('ingrAmount')
+  let elemenRecipeName = document.getElementById('recipeName').value;
+  let elemenDescription = document.getElementById('description').value;
+  let elemenInstructions = document.getElementById('instructions').value;
+  let elemenMealType = document.getElementById('mealType').value;
+  let elemenTime = document.getElementById('time').value;
+  let elemenPrice = document.getElementById('price').value;
+  let elemenImage = document.getElementById('image').value;
+  let elemenCreator = document.getElementById('creator').value;
+  let elemenSource = document.getElementById('source').value;
+
+
+
+  let ingUnit = []
+  let ingAmount = []
+  let ingName = []
+
+  elemenUnit.forEach((element) => {
+      ingUnit.push(element.value)
+  })
+  elemenName.forEach((element) => {
+      ingName.push(element.value)
+  })
+  elemenAmount.forEach((element) => {
+      ingAmount.push(element.value)
+  })
+
+
+let newIngredients = []
+for (let i = 0; i < ingUnit.length; i++ ){
+   let Ingr = {name: ingName[i],
+               amount: ingAmount[i],
+               unit: ingUnit[i]}
+  newIngredients.push(Ingr)
+}
+  axios.post('http://localhost:3000/create', {newIngredients, elemenRecipeName, elemenDescription,
+  elemenInstructions, elemenMealType, elemenTime, elemenPrice, elemenImage, elemenCreator, elemenSource})
+console.log('handlebar: ', newIngredients)
+}
+
+
 function createNewElement() {
     // First create a DIV element.
 	const txtNewInputBox = document.createElement('div');
@@ -57,8 +94,12 @@ function createNewElement() {
     // Then add the content (a new input box) of the element.
 	txtNewInputBox.innerHTML = `<div class="mb-3">
     <label for="exampleInputPassword2" class="form-label">Ingredients</label>
-    <input name="ingredients" type="text" class="form-control" id="exampleInputDescription2">
-  </div>
+    <select name="ingrName" id="inglist">
+      {{#each allIngr}}
+      <option value="{{this.name}}" {{#selected}}selected="selected"{{/selected}} >{{this.name}}</option>
+      {{/each}}
+    </select>
+    </div>
   <div class="mb-3">
     <label for="cars">Units:</label>
     <select name="ingrUnit" id="cars">
@@ -81,15 +122,15 @@ function createNewElement() {
 }
 </script>
   <div id="dynamicCheck">
-    <input type="button" value="+" class="btn btn-primary" onclick="createNewElement();" />
+    <input id="plusButton" type="button" value="+" class="btn btn-primary" onclick="createNewElement();" />
   </div>
   <div class="mb-3">
     <label for="exampleInputPassword2" class="form-label">Instructions</label>
-    <input name="instructions" type="text" class="form-control" id="exampleInputDescription2">
+    <input name="instructions" type="text" class="form-control" id="instructions">
   </div>
   <div class="mb-3">
     <label for="cars">Type:</label>
-    <select name="mealType" id="cars">
+    <select name="mealType" id="mealType">
       <option value="meat">Meat</option>
       <option value="vegatarian">Vegetarian</option>
       <option value="vegan">Vegan</option>
@@ -98,11 +139,11 @@ function createNewElement() {
   </div>
   <div class="mb-3">
     <label for="exampleInputPassword2" class="form-label">Time</label>
-    <input name="time" type="number" class="form-control" id="exampleInputDescription2">
+    <input name="time" type="number" class="form-control" id="time">
   </div>
   <div class="mb-3">
     <label for="cars">Price:</label>
-    <select name="price" id="cars">
+    <select name="price" id="price">
       <option value="cheap">Cheap</option>
       <option value="normal">Normal</option>
       <option value="expensive">Expensive</option>
@@ -111,17 +152,18 @@ function createNewElement() {
   </div>
   <div class="mb-3">
     <label for="exampleInputPassword2" class="form-label">Image</label>
-    <input name="image" type="img" class="form-control" id="exampleInputDescription2">
+    <input name="image" type="img" class="form-control" id="image">
   </div>
   <div class="mb-3">
     <label for="exampleInputPassword2" class="form-label">Creator</label>
-    <input name="creator" type="text" class="form-control" id="exampleInputDescription2">
+    <input name="creator" type="text" class="form-control" id="creator">
   </div>
   <div class="mb-3">
     <label for="exampleInputPassword2" class="form-label">Source</label>
-    <input name="source" type="text" class="form-control" id="exampleInputDescription2">
+    <input name="source" type="text" class="form-control" id="source">
   </div>
-  <button type="submit" class="btn btn-primary">Submit</button>
+  <button type="submit" class="btn btn-primary" onclick="submitHandler();">Submit</button>
+  
 </form>
 
 
