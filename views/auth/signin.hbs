@@ -1,15 +1,18 @@
+<main class="form-signin text-center">
 <form method="POST" action="/signin">
   <h1 class="h3 mb-3 fw-normal">Please sign in</h1>
   <label for="inputEmail" class="visually-hidden" >Email</label>
   <input type="email" name="email" class="form-control" placeholder="Enter your email"  >
   <label class="visually-hidden" >Password</label>
-  <input type="password" name="password" class="form-control" placeholder="Enter your Password"  >
-  <button type="submit" class="mt-5 w-100 btn btn-lg btn-primary" >Sign In</button>
-  <a href="/signup" class="mt-2 w-100 btn btn-lg btn-success" role="button">Or sing up!</a>
+  <input type="password" name="password" class="form-control" placeholder="Enter your Password">
+  {{!-- conditionally render the msg --}}
+  {{#if msg}}
+    <div class="alert alert-warning">{{msg}}</div>
+  {{/if}}
+  <button type="submit" class="mt-5 w-100 btn btn-lg btn-primary bg-lgtblue" >Sign in</button>
+  <a href="/signup" class="mt-2 w-100 btn btn-lg btn-success bg-lgtgreen" role="button">Or sign up!</a>
   <p class="mt-5 mb-3 text-muted">&copy; 2021 Thomas &amp; Cindy</p>  
 </form>
+</main>
 
-{{!-- conditionally render the msg --}}
-{{#if msg}}
-  <div class="alert alert-warning" >{{msg}}</div>
-{{/if}}
+

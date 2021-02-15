@@ -1,11 +1,18 @@
 /* colorcodes logo
 yellow: e78200
 light blue 36b3c9
+light green 
 dark blue 259bb0
 black grey 3b3b3b */
 
 body {
   padding: 0;  
+  align-items: center;
+  background-color: #f5f5f5;
+  /* For website*/
+  /* padding-top: 40px;
+  padding-bottom: 40px; */
+
  }
 
 a {
@@ -18,7 +25,8 @@ h1 {
   color: red
 }
 
-/* Signin form -------------*/
+/* Signin/up form -------------*/
+
 .form-signin {
   width: 100%;
   max-width: 330px;
@@ -48,7 +56,51 @@ h1 {
   border-top-left-radius: 0;
   border-top-right-radius: 0;
 }
-/*--------------------------*/
+
+/* buttons --------------------*/
+
+.btn.outline {
+	background: none;
+	padding: 12px 22px;
+}
+.btn-primary.outline {
+	border: 2px solid #0099cc;
+	color: #0099cc;
+}
+.btn-primary.outline:hover, .btn-primary.outline:focus, .btn-primary.outline:active, .btn-primary.outline.active, .open > .dropdown-toggle.btn-primary {
+	color: #33a6cc;
+	border-color: #33a6cc;
+}
+.btn-primary.outline:active, .btn-primary.outline.active {
+	border-color: #007299;
+	color: #007299;
+	box-shadow: none;
+}
+
+.btn {
+	padding: 14px 24px;
+	border: 0 none;
+	font-weight: 400;
+	letter-spacing: 1px;
+}
+.btn:focus, .btn:active:focus, .btn.active:focus {
+	outline: 0 none;
+}
+
+.bg-lgtblue {
+  background-color:#36b3c9 
+}
+
+.bg-lgtgreen{
+  background-color:#50ce93 
+}
+
+.btn-primary.outline:hover {
+  color: white;
+	background-color: #36b3c9;
+	border-color: #36b3c9;
+}
+/* End button style ---------------------*/
 
 /*# sourceMappingURL=style.css.map */
 

@@ -1,3 +1,27 @@
+<main class="form-signin text-center">
+<form method="POST" action="/signup">
+  
+  <h1 class="h3 mb-3 fw-normal">Welcome!<br>sign up here</h1>
+  <label class="visually-hidden" >Email</label>
+  <input type="text" name="username" class="form-control mb-1" placeholder="Chef's name">
+  <label class="visually-hidden" >Email</label>
+  <input type="email" name="email" class="form-control mt-0" placeholder="Your email">
+  <label class="mt-2 visually-hidden" >Password</label>
+  <input type="password" name="password" class="form-control mt-0" placeholder="Supersecret password">
+  {{!-- conditionally render the msg --}}
+  {{#if msg}}
+    <div class="alert alert-warning">{{msg}}</div>
+  {{/if}}
+  <button type="submit" class="mt-5 w-100 btn btn-lg btn-success bg-lgtgreen" >Sign me up!</button>
+  <a href="/signin" class="mt-2 w-100 btn btn-lg btn-primary outline " role="button">Or sign in!</a>
+  <p class="mt-5 mb-3 text-muted">&copy; 2021 Thomas &amp; Cindy</p>  
+</form>
+</main>
+
+{{!-- 
+
+
+
 <h1>Sign Up</h1>
 <form action="/signup" method="POST">
   <label>Username</label>
@@ -9,8 +33,4 @@
   <label>Password</label>
   <input name="password" type="password"  placeholder="Enter your Password"  >
   <button type="submit" >Sign Up</button>
-</form>
-
-{{#if msg}}
-  <div class="error">{{msg}}</div>
-{{/if}}
+</form> --}}
