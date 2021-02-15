@@ -8,11 +8,10 @@
     <label for="exampleInputPassword1" class="form-label">Description</label>
     <input name="description" type="text" class="form-control" id="exampleInputDescription1">
   </div>
-    <div class="mb-3">
+  <div class="mb-3">
     <label for="exampleInputPassword2" class="form-label">Ingredients</label>
     <input name="ingredients" type="text" class="form-control" id="exampleInputDescription2">
   </div>
- 
   <div class="mb-3">
     <label for="cars">Units:</label>
     <select name="ingrUnit" id="cars">
@@ -25,15 +24,52 @@
     </select>
     <br><br>
   </div>
-    <div class="mb-3">
+  <div class="mb-3">
     <label for="exampleInputPassword2" class="form-label">Amount</label>
     <input name="ingrAmount" type="text" class="form-control" id="exampleInputDescription2">
+  </div>
+
+
+  <div id="newElementId"></div>
+  <script type="text/JavaScript">
+function createNewElement() {
+    // First create a DIV element.
+	const txtNewInputBox = document.createElement('div');
+
+    // Then add the content (a new input box) of the element.
+	txtNewInputBox.innerHTML = `<div class="mb-3">
+    <label for="exampleInputPassword2" class="form-label">Ingredients</label>
+    <input name="ingredients" type="text" class="form-control" id="exampleInputDescription2">
+  </div>
+  <div class="mb-3">
+    <label for="cars">Units:</label>
+    <select name="ingrUnit" id="cars">
+      <option value="g">g</option>
+      <option value="ml">ml</option>
+      <option value="l">l</option>
+      <option value="spoon">spoon</option>
+      <option value="tablespoon">tablespoon</option>
+      <option value="pinch">pinch</option>
+    </select>
+    <br><br>
+  </div>
+  <div class="mb-3">
+    <label for="exampleInputPassword2" class="form-label">Amount</label>
+    <input name="ingrAmount" type="text" class="form-control" id="exampleInputDescription2">
+  </div>`;
+
+    // Finally put it where it is supposed to appear.
+	document.getElementById("newElementId").appendChild(txtNewInputBox);
+}
+</script>
+  <div id="dynamicCheck">
+    <input type="button" value="+" class="btn btn-primary" onclick="createNewElement();" />
   </div>
   <div class="mb-3">
     <label for="exampleInputPassword2" class="form-label">Instructions</label>
     <input name="instructions" type="text" class="form-control" id="exampleInputDescription2">
   </div>
-    <div class="mb-3">
+  <div class="mb-3">
     <label for="cars">Type:</label>
     <select name="mealType" id="cars">
       <option value="meat">Meat</option>
@@ -55,15 +91,15 @@
     </select>
     <br><br>
   </div>
-    <div class="mb-3">
+  <div class="mb-3">
     <label for="exampleInputPassword2" class="form-label">Image</label>
     <input name="image" type="img" class="form-control" id="exampleInputDescription2">
   </div>
-    <div class="mb-3">
+  <div class="mb-3">
     <label for="exampleInputPassword2" class="form-label">Creator</label>
     <input name="creator" type="text" class="form-control" id="exampleInputDescription2">
   </div>
-    <div class="mb-3">
+  <div class="mb-3">
     <label for="exampleInputPassword2" class="form-label">Source</label>
     <input name="source" type="text" class="form-control" id="exampleInputDescription2">
   </div>
@@ -73,5 +109,5 @@
 
 {{!-- Conditionally render the msg --}}
 {{#if msg}}
- <div>{{msg}}</div>
+<div>{{msg}}</div>
 {{/if}}
