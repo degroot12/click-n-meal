@@ -1,6 +1,7 @@
 const router = require('express').Router();
 const bcrypt = require('bcryptjs');
 const UserModel = require('../models/User.model.js')
+const IngredientsModel = require('../models/Ingredients.model.js')
 
 // GET Route Sign-up Page
 router.get('/signup', (req, res, next) => {
@@ -92,7 +93,15 @@ router.get('/profile', checkLoggedInUser, (req, res, next) => {
 
 router.get('/create', checkLoggedInUser, (req, res, next) => {
   let email = req.session.loggedInUser.email;
-  res.render('private/create.hbs', {email});
+  
+  IngredientsModel.find({})
+  .then((data) => {
+    let allIngr = data
+    res.render('private/create.hbs', {allIngr, email})
+  })
+  .catch((err) => {
+    console.log(err)
+  })
 })
 
 router.get('/edit', checkLoggedInUser, (req, res, next) => {
