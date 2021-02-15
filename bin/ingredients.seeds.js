@@ -9,8 +9,9 @@ const axios = require('axios')
 axios.get('https://world.openfoodfacts.org/ingredients.json')
   .then((response) => {
     IngredientsModel.insertMany(response.data.tags)
-    // console.log(response.data.tags)
+    console.log(IngredientsModel) 
       .then(() => {
+
         console.log('data ingredients inserted')
         mongoose.connection.close()
       })

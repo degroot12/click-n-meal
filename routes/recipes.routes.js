@@ -1,9 +1,13 @@
 const router = require('express').Router();
 const RecipeModel = require('../models/Recipe.model.js')
 
+
+// POST route for create
 router.post('/create', (req, res, next) => {
+
+  // console.log('model: ', IngredientsModel)
   const {name, description, ingredients, ingrAmount, ingrUnit, mealType, time, price, image, instructions, creator, source} = req.body
-  console.log(req.body)
+  // console.log(req.body)
   const newRecipe = {
     name:name, 
     description:description,
@@ -13,10 +17,9 @@ router.post('/create', (req, res, next) => {
       unit: ingrUnit
     }, mealType, time, price, image, instructions, creator, source
   }
-  
+ 
   RecipeModel.create(newRecipe)
     .then(() => {
-
       res.render('private/create.hbs', {msg: 'Your recipe has succesfully been created!'})
     })
     .catch(() => {
