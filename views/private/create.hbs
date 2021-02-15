@@ -22,6 +22,7 @@
   <div class="mb-3">
     <label for="cars">Units:</label>
     <select name="ingrUnit" id="cars" >
+      <option value="piece">piece</option>
       <option value="g">g</option>
       <option value="ml">ml</option>
       <option value="l">l</option>
@@ -38,8 +39,9 @@
 
 
   <div id="newElementId"></div>
-  <script type="text/JavaScript">
 
+{{!-- Handling the form values (and dynamic created values of ingredients) in a axios post  --}}
+<script type="text/JavaScript">
 
 function submitHandler(){
   console.log('Works Yayyy!')
@@ -56,8 +58,6 @@ function submitHandler(){
   let elemenCreator = document.getElementById('creator').value;
   let elemenSource = document.getElementById('source').value;
 
-
-
   let ingUnit = []
   let ingAmount = []
   let ingName = []
@@ -72,7 +72,6 @@ function submitHandler(){
       ingAmount.push(element.value)
   })
 
-
 let newIngredients = []
 for (let i = 0; i < ingUnit.length; i++ ){
    let Ingr = {name: ingName[i],
@@ -80,12 +79,13 @@ for (let i = 0; i < ingUnit.length; i++ ){
                unit: ingUnit[i]}
   newIngredients.push(Ingr)
 }
-  axios.post('http://localhost:3000/create', {newIngredients, elemenRecipeName, elemenDescription,
+
+axios.post('http://localhost:3000/create', {newIngredients, elemenRecipeName, elemenDescription,
   elemenInstructions, elemenMealType, elemenTime, elemenPrice, elemenImage, elemenCreator, elemenSource})
 console.log('handlebar: ', newIngredients)
 }
 
-
+// create dynamic field for ingredients (name, unit, amount)
 function createNewElement() {
     // First create a DIV element.
 	const txtNewInputBox = document.createElement('div');
@@ -121,6 +121,7 @@ function createNewElement() {
 	document.getElementById("newElementId").appendChild(txtNewInputBox);
 }
 </script>
+
   <div id="dynamicCheck">
     <input id="plusButton" type="button" value="+" class="btn btn-primary" onclick="createNewElement();" />
   </div>
