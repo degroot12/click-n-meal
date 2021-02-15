@@ -4,12 +4,12 @@
   <input type="email" name="email" class="form-control" placeholder="Enter your email"  >
   <label class="visually-hidden" >Password</label>
   <input type="password" name="password" class="form-control" placeholder="Enter your Password"  >
-  <button type="submit" class="w-100 btn btn-lg btn-primary" >Sign In</button>
-  <a href="/signup" class="w-100 btn btn-lg btn-success" role="button">Or sing up!</a>
+  <button type="submit" class="mt-5 w-100 btn btn-lg btn-primary" >Sign In</button>
+  <a href="/signup" class="mt-2 w-100 btn btn-lg btn-success" role="button">Or sing up!</a>
   <p class="mt-5 mb-3 text-muted">&copy; 2021 Thomas &amp; Cindy</p>  
 </form>
 
 {{!-- conditionally render the msg --}}
 {{#if msg}}
-  <div class="error">{{msg}}</div>
+  <div class="alert alert-warning" >{{msg}}</div>
 {{/if}}

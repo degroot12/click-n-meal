@@ -15,7 +15,7 @@ const RecipeSchema = new mongoose.Schema({
     name: String,
     unit: {
       type: String,
-      enum: ['g', 'spoon', 'tablespoon', 'l', 'pinch', 'ml']
+      enum: ['piece', 'g', 'spoon', 'tablespoon', 'l', 'pinch', 'ml']
     },
     amount: Number
   },

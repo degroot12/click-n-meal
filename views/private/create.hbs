@@ -8,32 +8,19 @@
     <label for="exampleInputPassword1" class="form-label">Description</label>
     <input name="description" type="text" class="form-control" id="exampleInputDescription1">
   </div>
-  {{!-- <div>
-    {{#each allIngr}}
-      <div> test: {{this.name}} </div >     
-    {{/each}}
-  </div> --}}
-
-
-    <div class="mb-3">
+  <div class="mb-3">
     <label for="exampleInputPassword2" class="form-label">Ingredients</label>
-    <select name="inglist" id="inglist">
+    <select name="ingredients" id="inglist">
       {{#each allIngr}}
       <option value="{{this.name}}" {{#selected}}selected="selected"{{/selected}} >{{this.name}}</option>
       {{/each}}
     </select>
-
-      {{!-- <select name="config[pair]">
-    {{#each pairoption}}
-    <option value="{{value}}" {{#selected}}selected="selected"{{/selected}}>{{name}}</option>
-    {{/each}}
-  </select> --}}
-
   </div>
  
   <div class="mb-3">
     <label for="cars">Units:</label>
     <select name="ingrUnit" id="cars">
+      <option value="piece">piece</option>
       <option value="g">g</option>
       <option value="ml">ml</option>
       <option value="l">l</option>
