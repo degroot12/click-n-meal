@@ -1,23 +1,25 @@
 const router = require('express').Router();
 const RecipeModel = require('../models/Recipe.model.js')
+const axios = require('axios')
 
 
 // POST route for create
 router.post('/create', (req, res, next) => {
 
-  // console.log('model: ', IngredientsModel)
-  const {name, description, ingredients, ingrAmount, ingrUnit, mealType, time, price, image, instructions, creator, source} = req.body
-  // console.log(req.body)
+  const {newIngredients, elemenRecipeName, elemenDescription,
+    elemenInstructions, elemenMealType, elemenTime, elemenPrice, elemenImage, elemenCreator, elemenSource} = req.body
   const newRecipe = {
-    name:name, 
-    description:description,
-    ingredients:{
-      name: ingredients,
-      amount: ingrAmount,
-      unit: ingrUnit
-    }, mealType, time, price, image, instructions, creator, source
+    name:elemenRecipeName, 
+    description:elemenDescription,
+    ingredients: newIngredients,
+    time: elemenTime,
+    source:elemenSource,
+    creator:elemenCreator,
+    mealType:elemenMealType,
+    priceCategory: elemenPrice,
+    instructions: elemenInstructions,
+    image: elemenImage
   }
- 
   RecipeModel.create(newRecipe)
     .then(() => {
       res.render('private/create.hbs', {msg: 'Your recipe has succesfully been created!'})
@@ -44,7 +46,6 @@ router.get('/edit/:id', (req, res, next) => {
 router.post('/edit/:id', (req, res, next) => {
   const id = req.params.id;
   const {name, description, ingredients, ingrAmount, ingrUnit, mealType, time, price, image, instructions, creator, source} = req.body
-  console.log(req.body)
   const editedRecipe = {
     name:name, 
     description:description,

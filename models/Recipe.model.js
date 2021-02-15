@@ -11,14 +11,25 @@ const RecipeSchema = new mongoose.Schema({
     type: String,
     enum: ['cheap', 'normal', 'expensive']
   },
-  ingredients: {
-    name: String,
+  ingredients: [{
+    name: {
+      type: String,
+      required: true
+    },
     unit: {
       type: String,
+<<<<<<< HEAD
       enum: ['piece', 'g', 'spoon', 'tablespoon', 'l', 'pinch', 'ml']
+=======
+      enum: ['g', 'spoon', 'tablespoon', 'l', 'pinch', 'ml'],
+      required: true
+>>>>>>> origin/thomas-code
     },
-    amount: Number
-  },
+    amount: {
+      type: Number,
+      required: true
+    }
+  }],
   rating: {
     type: Number,
     enum: [1, 2, 3, 4, 5]
