@@ -87,20 +87,33 @@ h1 {
 	outline: 0 none;
 }
 
-.bg-lgtblue {
-  background-color:#36b3c9 
-}
-
-.bg-lgtgreen{
-  background-color:#50ce93 
-}
-
 .btn-primary.outline:hover {
   color: white;
 	background-color: #36b3c9;
 	border-color: #36b3c9;
 }
 /* End button style ---------------------*/
+
+/* background styles --------------------*/
+.bg-lgtblue {
+  background-color:#36b3c9 
+}
+
+.bg-lgtgreen {
+  background-color:#50ce93 
+}
+
+.bg-navbarcustom {
+  /* background-color:#2b2a2f;  */
+  background-color:#009688
+} 
+
+.navbar-brand {
+  color:white !important
+} 
+
+/* end background styles*/
+
 
 /*# sourceMappingURL=style.css.map */
 

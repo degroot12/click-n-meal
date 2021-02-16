@@ -1,11 +1,11 @@
 <main class="form-signin text-center">
 <form method="POST" action="/signin">
   <h1 class="h3 mb-3 fw-normal">Please sign in</h1>
-  <label for="inputEmail" class="visually-hidden" >Email</label>
+  {{!-- <label for="inputEmail" class="visually-hidden" >Email</label> --}}
   <input type="email" name="email" class="form-control" placeholder="Enter your email"  >
-  <label class="visually-hidden" >Password</label>
+  {{!-- <label class="visually-hidden" >Password</label> --}}
   <input type="password" name="password" class="form-control" placeholder="Enter your Password">
-  {{!-- conditionally render the msg --}}
+  {{!-- conditionally render warning  msg --}}
   {{#if msg}}
     <div class="alert alert-warning">{{msg}}</div>
   {{/if}}
