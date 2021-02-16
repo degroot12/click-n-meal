@@ -1,7 +1,11 @@
+
 const router = require('express').Router();
 const bcrypt = require('bcryptjs');
 const UserModel = require('../models/User.model.js')
 const RecipeModel = require('../models/Recipe.model.js')
+// import {querySelector} from "../public/js/script"
+// const filterQuery = require("../public/js/script.js")
+// const test = require("../public/js/script.js")
 
 //
 const checkLoggedInUserHome = (req, res, next) => {
@@ -14,7 +18,7 @@ const checkLoggedInUserHome = (req, res, next) => {
 
 // GET route for the Starter page
 router.get('/', checkLoggedInUserHome,(req, res, next) => {
-  res.render('public/home.hbs')
+  res.redirect('/selector')
 });
 
 // GET Route for recipe page
@@ -33,13 +37,32 @@ router.get('/search', (req, res, next) => {
       
 });
 
+// {mealType:"vegan"}, {mealType:"meat"} 
 // GET Route for Selector page
 router.get('/selector', (req, res, next) => {
-  // RecipeModel.find()
-  // .then((recipes) => {
-  //   res.render('public/search.hbs', {recipes})
-  // })
-  res.render('public/selector.hbs')
+
+  let mealTypeArr = [{}, {}] //default filter
+  let veganOn = req.query.isVegan
+  console.log('veganOn: ', veganOn)
+  if (veganOn == "veganOn") {
+    mealTypeArr.push({mealType:"vegan"})
+    console.log('vegan true')
+  }
+  else if (veganOn == "veganOff") {
+    mealTypeArr.pop({mealType:"vegan"})
+    console.log('vegan false')
+  }
+  console.log('mealtype:', mealTypeArr)
+
+  RecipeModel.find({$or: mealTypeArr })
+  .then((recipes) => {
+    // console.log(recipes)
+    res.render('public/selector.hbs', {recipes})
+  })
+  .catch((err) => {
+    next(err)
+  })
+  // res.render('public/selector.hbs')
 });
 
 

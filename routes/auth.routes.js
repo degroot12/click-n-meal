@@ -88,6 +88,8 @@ const checkLoggedInUser = (req, res, next) => {
 
 router.get('/profile', checkLoggedInUser, (req, res, next) => {
   let email = req.session.loggedInUser.email;
+  let username = req.session.loggedInUser.username;
+  
   res.render('private/profile.hbs', {email});
 });
 
