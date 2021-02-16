@@ -80,7 +80,7 @@ for (let i = 0; i < ingUnit.length; i++ ){
   newIngredients.push(Ingr)
 }
 
-axios.post('http://localhost:3000/create', {newIngredients, elemenRecipeName, elemenDescription,
+axios.post('https://click-n-meal.herokuapp.com/create', {newIngredients, elemenRecipeName, elemenDescription,
   elemenInstructions, elemenMealType, elemenTime, elemenPrice, elemenImage, elemenCreator, elemenSource})
 console.log('handlebar: ', newIngredients)
 }
