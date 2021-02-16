@@ -22,8 +22,11 @@ router.get('/', checkLoggedInUserHome,(req, res, next) => {
 });
 
 // GET Route for recipe page
-router.get('/recipe', (req, res, next) => {
-  res.render('public/recipe.hbs')
+router.get('/recipe/:id', (req, res, next) => {
+  const id = req.params.id
+  console.log(req.body)
+
+  res.render('public/recipe.hbs', {id})
 });
 
 // GET Route for search page
