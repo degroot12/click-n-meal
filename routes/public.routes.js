@@ -24,10 +24,17 @@ router.get('/', checkLoggedInUserHome,(req, res, next) => {
 // GET Route for recipe page
 router.get('/recipe/:id', (req, res, next) => {
   const id = req.params.id
+  
+  // if msg needs to be appear after creating new recipe
+  let msgNewRecipeCreated 
+  if (Object.keys(req.query).length!=0) {
+    msgNewRecipeCreated = req.query.passMsg
+    console.log('passMsg1: ', msgNewRecipeCreated)
+  }
 
   RecipeModel.findById(id)
     .then((recipe) => {
-      res.render('public/recipe.hbs', {recipe})
+      res.render('public/recipe.hbs', {recipe, msgNewRecipeCreated})
     })
     .catch((err) => {
       next(err)

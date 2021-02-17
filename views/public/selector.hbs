@@ -1,27 +1,28 @@
-  <div class="py-5 ">
-    <div class="container">
-      <div class="row hidden-md-up">
-        <div class="col-md-4">
-          {{#each recipes}}
-          <div class="card mb-2">
-            <div class="image">
-              <img src= "{{this.image}}" />
-            </div>
-            <div class="card-block">
-              <h4 class="card-title">{{this.name}}</h4>
-              <h6 class="card-subtitle text-muted">{{this.time}} min, {{this.mealType}}</h6>
-              <p class="card-text p-y-1">{{this.description}}</p>
-              <div>
-              <a href="/recipe/{{this.id}}"><button type="submit" class="mt-5 w-100 btn btn-lg btn-primary bg-lgtblue">Open</button>
-            </div>
-              {{!-- <a href="/recipe/{{this.id}}" class="card-link">Open</a> --}}
-              {{!-- <a href="#" class="card-link">Second link</a> --}}
-            </div>
+
+<div class="py-5 ">
+  <div class="container">
+    <div class="row hidden-md-up">
+      <div class="col-md-4">
+        {{#each recipes}}
+        <div class="card mb-2">
+          <div class="image">
+            <img src= "{{this.image}}" />
           </div>
-          {{/each}}
+          <div class="card-block">
+            <h4 class="card-title">{{this.name}}</h4>
+            <h6 class="card-subtitle text-muted">{{this.time}} min, {{this.mealType}}</h6>
+            <p class="card-text p-y-1">{{this.description}}</p>
+            <div>
+            <a href="/recipe/{{this.id}}"><button type="submit" class="mt-5 w-100 btn btn-lg btn-primary bg-lgtblue">Open</button>
+          </div>
+            {{!-- <a href="/recipe/{{this.id}}" class="card-link">Open</a> --}}
+            {{!-- <a href="#" class="card-link">Second link</a> --}}
+          </div>
         </div>
-      </div><br>
-  </div>
+        {{/each}}
+      </div>
+    </div><br>
+</div>
 
 
 {{#each recipes}}

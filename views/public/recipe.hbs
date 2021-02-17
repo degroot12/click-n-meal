@@ -1,5 +1,9 @@
 <h1 class="text-center">Explore your recipe!</h1>
 
+  {{#if msgNewRecipeCreated}}
+    <div class="m-5 mb-2 alert alert-warning">{{msgNewRecipeCreated}}</div>
+  {{/if}}
+
   <div class="container mt-3">
       <div class="col-md-4">
         <div class="card">

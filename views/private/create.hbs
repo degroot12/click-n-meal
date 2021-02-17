@@ -1,5 +1,5 @@
-<h6>Welcome, {{username}}</h6>
-<h1>Create your own recipe!</h1>
+<h6 class="text-center">Welcome, {{username}}</h6>
+<h1 class="text-center">Create your own recipe!</h1>
 
 
 
@@ -14,7 +14,7 @@
     <input name="description" type="text" class="form-control" id="description">
   </div>
 
-  {{!-- Conditionally render the msg --}}
+  {{!-- Conditionally render the msg // depricated--}}
   {{#if msg}}
     <div class="alert alert-warning">{{msg}}</div>
   {{/if}}

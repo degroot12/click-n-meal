@@ -1,7 +1,7 @@
-<h6>Welcome, {{username}}</h6>
-<h1>Edit the recipe</h1>
+<h6 class="text-center">Welcome, {{username}}</h6>
+<h1 class="text-center">Edit the recipe</h1>
 
-<form >
+<form action="/edit/{{recipe._id}}" method="POST">
   <div class="mb-3">
     {{!-- <label for="exampleInputEmail1" class="form-label">Name</label> --}}
     <input name="recipeName" type="text" class="form-control" id="recipeName" placeholder={{recipe.name}}>
@@ -188,7 +188,7 @@ function createNewElement() {
     {{!-- <label for="exampleInputPassword2" class="form-label">Source</label> --}}
     <input name="source" type="text" class="form-control" id="source" placeholder={{recipe.source}}>
   </div>
-  <form action="/edit/:id" method="POST">
+  
     <button type="submit" class="mt-5 w-100 btn btn-lg btn-primary bg-lgtblue">Save</button>
   </form></td>
 
@@ -197,4 +197,3 @@ function createNewElement() {
 <div>{{msg}}</div>
 {{/if}}
 
-</form>

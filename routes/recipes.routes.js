@@ -33,7 +33,8 @@ router.post('/create', (req, res, next) => {
 
   const {newIngredients, elemenRecipeName, elemenDescription,
     elemenInstructions, elemenMealType, elemenTime, elemenPrice, elemenImage, elemenCreator, elemenSource} = req.body
-  const newRecipe = {
+  
+    const newRecipe = {
     name:elemenRecipeName, 
     description:elemenDescription,
     ingredients: newIngredients,
@@ -45,16 +46,16 @@ router.post('/create', (req, res, next) => {
     instructions: elemenInstructions,
     image: elemenImage
   }
-  const msg = 'Your recipe has succesfully been created!'
+  const msg = encodeURIComponent('Your recipe has succesfully been created')
   
   RecipeModel.create(newRecipe)
-    .then(() => {
-      res.render('private/create.hbs', {msg, username})
-      console.log(msg)
-      console.log(username)
+    .then((recipe) => {
+      // after creating, show detailspage of recipe
+      // passing a msg for on the recipe page
+      res.redirect(`/recipe/${recipe._id}/?passMsg=`+ msg)
     })
-    .catch(() => {
-      console.log('error while filling database')
+    .catch((err) => {
+      next(err)
     })
 })
 
@@ -67,56 +68,37 @@ router.get('/edit/:id', checkLoggedInUser, (req, res, next) => {
     .populate('allIngr')
     .then((recipe) => {
       res.render('private/edit.hbs', {recipe, username})
-      // console.log(recipe)
+      console.log('id (get): ', recipe.id)
     })
     .catch((err) => {
       next(err)
     })  
 })
 
-// POST /edit
-// router.post('/edit/:id', checkLoggedInUser, (req, res, next) => {
-//   const id = req.params.id
-//   const {name, description, ingredients, ingrAmount, ingrUnit, mealType, time, price, image, instructions, creator, source} = req.body
-
-//   let updateRecipe = {
-//     name: recipeName
-//   }
-
-//   RecipeModel.findByIdAndUpdate(id, updateRecipe)
-//     .then(() => {
-//       res.redirect('/selector')
-//       console.log('save ', updateRecipe)
-//     })
-//     .catch((err) => {
-//       next(err)
-//     })
-// })
-
-
-
-
-// //POST route for editing
-// router.post('/edit/:id', (req, res, next) => {
-//   const id = req.params.id;
-//   const {name, description, ingredients, ingrAmount, ingrUnit, mealType, time, price, image, instructions, creator, source} = req.body
-//   const editedRecipe = {
-//     name:name, 
-//     description:description,
-//     ingredients:{
-//       name: ingredients,
-//       amount: ingrAmount,
-//       unit: ingrUnit
-//     }, mealType, time, price, image, instructions, creator, source
-//   }
-//   RecipeModel.findByIdAndUpdate(id, editedRecipe)
-//     .then(() => {
-//       res.redirect('/recipe')
-//     })
-//     .catch((err) => {
-//       next(err)
-//     })
-// })
+//POST route for editing
+router.post('/edit/:id', (req, res, next) => {
+  const id = req.params.id;
+  const {name, description, ingredients, ingrAmount, ingrUnit, mealType, time, price, image, instructions, creator, source} = req.body
+  
+  const editedRecipe = {
+    name:name, 
+    // description:description,
+    // ingredients:{
+    //   name: ingredients,
+    //   amount: ingrAmount,
+    //   unit: ingrUnit
+    // }, mealType, time, price, image, instructions, creator, source
+  }
+  console.log('check 1')
+  RecipeModel.findByIdAndUpdate(id, editedRecipe)
+    .then(() => {
+      res.redirect(`/recipe/${id}`)
+      console.log('check 2')
+    })
+    .catch((err) => {
+      next(err)
+    })
+})
 
 
 
