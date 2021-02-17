@@ -1,7 +1,32 @@
-<h1>This is the recipe page</h1>
+<h1>Explore your recipe!</h1>
+
+<div class="py-5">
+  <div class="container">
+      <div class="col-md-4">
+        <div class="card">
+          <div class="image">
+            <img src= "{{recipe.image}}" />
+          </div>
+          <div class="card-block">
+            <h2 class="card-title">{{recipe.name}}</h2>
+            <h5 class="card-subtitle text-muted">{{recipe.time}} min, {{recipe.mealType}}, {{recipe.priceCategory}}</h5>
+            <h6>Created by: {{recipe.creator}}</h6>
+            <p class="card-text p-y-1">{{recipe.description}}</p>
+            <p class="card-text p-y-1">{{recipe.instructions}}</p>
+            <h5>Ingredients</h5>
+ 
+            {{#each recipe.ingredients}}
+              <div>{{amount}} {{unit}} {{this.name}}</div>
+            {{/each}}            
+            <div><a href="/edit" class="card-link">Edit recipe</a></div>
+          </div>
+        </div>
+      </div>
+  </div>
+</div>
 
 
 {{!-- Conditionally render the msg --}}
-{{!-- {{#if msg}}
+{{#if msg}}
  <div>{{msg}}</div>
-{{/if}} --}}
+{{/if}}
