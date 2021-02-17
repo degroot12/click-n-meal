@@ -9,11 +9,9 @@ body {
   padding: 0;  
   align-items: center;
   background-color: #f5f5f5;
-  /* For website*/
-  /* padding-top: 40px;
-  padding-bottom: 40px; */
+  padding-top: 70px;
+}
 
- }
 
 a {
   color: #00b7ff; }
@@ -24,6 +22,9 @@ h1 {
 .home-page {
   color: red
 }
+
+/* images */
+
 
 /* Signin/up form -------------*/
 
@@ -95,6 +96,7 @@ h1 {
 /* End button style ---------------------*/
 
 /* background styles --------------------*/
+
 .bg-lgtblue {
   background-color:#36b3c9 
 }
@@ -111,6 +113,7 @@ h1 {
 .navbar-brand {
   color:white !important
 } 
+*/
 
 /* end background styles*/
 
@@ -142,5 +145,5 @@ h1 {
 }
 
 
-/*# sourceMappingURL=style.css.map */
+#sourceMappingURL=style.css.map
 

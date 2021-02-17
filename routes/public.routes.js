@@ -22,9 +22,18 @@ router.get('/', checkLoggedInUserHome,(req, res, next) => {
 });
 
 // GET Route for recipe page
-router.get('/recipe', (req, res, next) => {
-  res.render('public/recipe.hbs')
+router.get('/recipe/:id', (req, res, next) => {
+  const id = req.params.id
+
+  RecipeModel.findById(id)
+    .then((recipe) => {
+      res.render('public/recipe.hbs', {recipe})
+    })
+    .catch((err) => {
+      next(err)
+    })
 });
+
 
 // GET Route for search page
 router.get('/search', (req, res, next) => {
@@ -111,7 +120,8 @@ router.get('/selector', (req, res, next) => {
     mealTypeArr = {mealType:"meat"}
     console.log('vegan false')
   }
-  console.log('mealtype:', mealTypeArr)
+  // console.log('mealtype:', mealTypeArr)
+
 
   let timeArr = {} //default filter
   let maxTime = req.query.maxTime
@@ -154,7 +164,6 @@ router.get('/selector', (req, res, next) => {
   .catch((err) => {                                                                                                                                                                                                
     next(err)
   })
-  // res.render('public/selector.hbs')
 });
 
 
