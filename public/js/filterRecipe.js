@@ -1,6 +1,7 @@
 function handleCheckbox() {
   let veganOn
 
+
   if (document.getElementById("veganFilter").checked){
     veganOn = "veganOn"
   }

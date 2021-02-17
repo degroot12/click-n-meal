@@ -1,20 +1,46 @@
-<h1>This is the edit page</h1>
+<h6>Welcome, {{username}}</h6>
+<h1>Edit the recipe</h1>
 
-
-<form method="POST" action="/edit/{{recipe._id}}">
+<form >
   <div class="mb-3">
-    <label for="exampleInputEmail1" class="form-label">Name</label>
-    <input value="{{recipe.name}}" name="recipeName" type="text" class="form-control" id="recipeName" aria-describedby="emailHelp">
+    {{!-- <label for="exampleInputEmail1" class="form-label">Name</label> --}}
+    <input name="recipeName" type="text" class="form-control" id="recipeName" placeholder={{recipe.name}}>
   </div>
   <div class="mb-3">
-    <label for="exampleInputPassword1" class="form-label">Description</label>
-    <input value="{{recipe.description}}" name="description" type="text" class="form-control" id="description">
+    {{!-- <label for="exampleInputPassword1" class="form-label">Description</label> --}}
+    <input name="description" type="text" class="form-control" id="description" placeholder={{recipe.description}}>
   </div>
 
+  <div class="h-divider"></div>
+
+ {{!-- Block for editing current ingredient --}}
+  {{#each recipe.ingredients}}
     <div class="mb-3">
+      <p>Ingredient: {{this.name}}</p>
+      <p>
+      <input name="ingrName" type="text" class="form-control" id="ingrAmount" placeholder="{{this.amount}}">
+      </p>
+      {{!-- <label for="exampleInputPassword2" class="form-label">Amount</label> --}}
+      <label for="cars">Units:</label>
+      <select name="ingrUnit" id="cars" >
+        <option value="piece">piece</option>
+        <option value="g">g</option>
+        <option value="ml">ml</option>
+        <option value="l">l</option>
+        <option value="spoon">spoon</option>
+        <option value="tablespoon">tablespoon</option>
+        <option value="pinch">pinch</option>
+      </select>
+    </div>
+    <br>
+  {{/each}}  
+
+  {{!-- Block for adding new ingredient --}}
+  <div class="mb-3">
+    <p> Or add a new ingredient: </p>
     <label for="exampleInputPassword2" class="form-label">Ingredients</label>
-    <select value="{{recipe.ingredients}}" name="ingrName" id="ingrList">
-      {{#each allIngr}}
+    <select name="ingrName" id="ingrList">
+      {{#each recipe.allIngr}}
       <option value="{{this.name}}" {{#selected}}selected="selected"{{/selected}} >{{this.name}}</option>
       {{/each}}
     </select>
@@ -34,9 +60,8 @@
   </div>
   <div class="mb-3">
     <label for="exampleInputPassword2" class="form-label">Amount</label>
-    <input value="{{recipe.amount}}"name="ingrAmount" type="text" class="form-control" id="ingrAmount" required>
+    <input name="ingrAmount" type="text" class="form-control" id="ingrAmount">
   </div>
-
 
   <div id="newElementId"></div>
 
@@ -93,7 +118,7 @@ function createNewElement() {
     // Then add the content (a new input box) of the element.
 	txtNewInputBox.innerHTML = `<div class="mb-3">
     <label for="exampleInputPassword2" class="form-label">Ingredients</label>
-    <select value="{{recipe.ingredients}}" name="ingrName" id="inglist">
+    <select name="ingrName" id="inglist">
       {{#each allIngr}}
       <option value="{{this.name}}" {{#selected}}selected="selected"{{/selected}} >{{this.name}}</option>
       {{/each}}
@@ -101,7 +126,7 @@ function createNewElement() {
     </div>
   <div class="mb-3">
     <label for="cars">Units:</label>
-    <select value="{{recipe.ingrUnit}}" name="ingrUnit" id="cars">
+    <select name="ingrUnit" id="cars">
       <option value="piece">piece</option>
       <option value="g">g</option>
       <option value="ml">ml</option>
@@ -114,7 +139,7 @@ function createNewElement() {
   </div>
   <div class="mb-3">
     <label for="exampleInputPassword2" class="form-label">Amount</label>
-    <input value="{{recipe.amount}}" name="ingrAmount" type="text" class="form-control" id="exampleInputDescription2">
+    <input name="ingrAmount" type="text" class="form-control" id="exampleInputDescription2">
   </div>`;
 
     // Finally put it where it is supposed to appear.
@@ -127,11 +152,11 @@ function createNewElement() {
   </div>
   <div class="mb-3">
     <label for="exampleInputPassword2" class="form-label">Instructions</label>
-    <input value="{{recipe.instructions}}"name="instructions" type="text" class="form-control" id="instructions">
+    <input name="instructions" type="text" class="form-control" id="instructions" placeholder={{recipe.instructions}}>
   </div>
   <div class="mb-3">
     <label for="cars">Type:</label>
-    <select value="{{recipe.mealType}}" name="mealType" id="mealType">
+    <select name="mealType" id="mealType" >
       <option value="meat">Meat</option>
       <option value="vegatarian">Vegetarian</option>
       <option value="vegan">Vegan</option>
@@ -140,11 +165,11 @@ function createNewElement() {
   </div>
   <div class="mb-3">
     <label for="exampleInputPassword2" class="form-label">Time</label>
-    <input value="{{recipe.time}}" name="time" type="number" class="form-control" id="time">
+    <input name="time" type="number" class="form-control" id="time" placeholder={{recipe.time}}>
   </div>
   <div class="mb-3">
     <label for="cars">Price:</label>
-    <select value="{{recipe.price}}" name="price" id="price">
+    <select name="price" id="price" placeholder={{recipe.mealType}}>
       <option value="cheap">Cheap</option>
       <option value="normal">Normal</option>
       <option value="expensive">Expensive</option>
@@ -152,25 +177,24 @@ function createNewElement() {
     <br><br>
   </div>
   <div class="mb-3">
-    <label for="exampleInputPassword2" class="form-label">Image</label>
-    <input value="{{recipe.image}}" name="image" type="img" class="form-control" id="image">
+    <label for="exampleInputPassword2" class="form-label">Image url</label>
+    <input name="image" type="img" class="form-control" id="image" placeholder={{recipe.image}}>
   </div>
   <div class="mb-3">
-    <label for="exampleInputPassword2" class="form-label">Creator</label>
-    <input value="{{recipe.creator}}"name="creator" type="text" class="form-control" id="creator">
+    {{!-- <label for="exampleInputPassword2" class="form-label">Creator</label> --}}
+    <input name="creator" type="text" class="form-control" id="creator" placeholder={{recipe.creator}}>
   </div>
   <div class="mb-3">
-    <label for="exampleInputPassword2" class="form-label">Source</label>
-    <input value="{{recipe.source}}"name="source" type="text" class="form-control" id="source">
+    {{!-- <label for="exampleInputPassword2" class="form-label">Source</label> --}}
+    <input name="source" type="text" class="form-control" id="source" placeholder={{recipe.source}}>
   </div>
-  <button type="submit" class="btn btn-primary" onclick="submitHandler();">Save edits</button>
-  
-</form>
-
+  <form action="/edit/:id" method="POST">
+    <button type="submit" class="mt-5 w-100 btn btn-lg btn-primary bg-lgtblue">Save</button>
+  </form></td>
 
 {{!-- Conditionally render the msg --}}
 {{#if msg}}
 <div>{{msg}}</div>
 {{/if}}
 
-
+</form>

@@ -1,4 +1,5 @@
 <h1>This is the selector page</h1>
+
 <div id="main">
   <div id="search">
   
@@ -14,7 +15,7 @@
 
 
 
-  <div class="py-5">
+  <div class="py-5 ">
     <div class="container">
       <div class="row hidden-md-up">
         <div class="col-md-4">
@@ -27,7 +28,7 @@
               <h4 class="card-title">{{this.name}}</h4>
               <h6 class="card-subtitle text-muted">{{this.time}} min, {{this.mealType}}</h6>
               <p class="card-text p-y-1">{{this.description}}</p>
-              <a href="/recipe" class="card-link">Open</a>
+              <a href="/recipe/{{this.id}}" class="card-link">Open</a>
               <a href="#" class="card-link">Second link</a>
             </div>
           </div>

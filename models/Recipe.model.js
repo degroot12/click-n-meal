@@ -1,5 +1,6 @@
 const mongoose = require("mongoose");
 const IngredientsModel = require('./Ingredients.model.js')
+
 // TODO: Please make sure you edit the user model to whatever makes sense in this case
 const RecipeSchema = new mongoose.Schema({
   name: String,
@@ -40,6 +41,11 @@ const RecipeSchema = new mongoose.Schema({
     type: String,
     enum: ['meat', 'vegetarian', 'vegan']
   },
+  allIngr: {
+    type: mongoose.Schema.Types.ObjectId,
+    ref: 'ingredient'
+
+  }
 });
 
 const RecipeModel = mongoose.model("recipe", RecipeSchema);

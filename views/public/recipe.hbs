@@ -17,8 +17,12 @@
  
             {{#each recipe.ingredients}}
               <div>{{amount}} {{unit}} {{this.name}}</div>
-            {{/each}}            
-            <div><a href="/edit" class="card-link">Edit recipe</a></div>
+            {{/each}}           
+
+            <div>
+              <a href="/edit/{{recipe.id}}"><button type="submit" class="mt-5 w-100 btn btn-lg btn-primary bg-lgtblue">Edit</button>
+            </div>
+            
           </div>
         </div>
       </div>

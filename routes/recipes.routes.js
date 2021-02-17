@@ -42,7 +42,6 @@ router.get('/edit/:id', (req, res, next) => {
 })
 
 //POST route for editing
-
 router.post('/edit/:id', (req, res, next) => {
   const id = req.params.id;
   const {name, description, ingredients, ingrAmount, ingrUnit, mealType, time, price, image, instructions, creator, source} = req.body

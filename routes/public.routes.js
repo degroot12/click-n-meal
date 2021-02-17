@@ -24,10 +24,16 @@ router.get('/', checkLoggedInUserHome,(req, res, next) => {
 // GET Route for recipe page
 router.get('/recipe/:id', (req, res, next) => {
   const id = req.params.id
-  console.log(req.body)
 
-  res.render('public/recipe.hbs', {id})
+  RecipeModel.findById(id)
+    .then((recipe) => {
+      res.render('public/recipe.hbs', {recipe})
+    })
+    .catch((err) => {
+      next(err)
+    })
 });
+
 
 // GET Route for search page
 router.get('/search', (req, res, next) => {
@@ -44,20 +50,21 @@ router.get('/search', (req, res, next) => {
 // GET Route for Selector page
 router.get('/selector', (req, res, next) => {
 
-  let mealTypeArr = [{}, {}] //default filter
+  let mealTypeArr = {} //default filter
   let veganOn = req.query.isVegan
-  console.log('veganOn: ', veganOn)
+  // console.log('veganOn: ', veganOn)
   if (veganOn == "veganOn") {
-    mealTypeArr.push({mealType:"vegan"})
+    mealTypeArr = {mealType:"vegan"}
     console.log('vegan true')
   }
   else if (veganOn == "veganOff") {
-    mealTypeArr.pop({mealType:"vegan"})
+    mealTypeArr = {}
     console.log('vegan false')
   }
-  console.log('mealtype:', mealTypeArr)
+  // console.log('mealtype:', mealTypeArr)
 
-  RecipeModel.find({$or: mealTypeArr })
+
+  RecipeModel.find({$or: [mealTypeArr]})
   .then((recipes) => {
     // console.log(recipes)
     res.render('public/selector.hbs', {recipes})
@@ -65,7 +72,6 @@ router.get('/selector', (req, res, next) => {
   .catch((err) => {
     next(err)
   })
-  // res.render('public/selector.hbs')
 });
 
 
