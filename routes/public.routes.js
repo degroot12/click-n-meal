@@ -29,7 +29,6 @@ router.get('/recipe/:id', (req, res, next) => {
   let msgNewRecipeCreated 
   if (Object.keys(req.query).length!=0) {
     msgNewRecipeCreated = req.query.passMsg
-    console.log('passMsg1: ', msgNewRecipeCreated)
   }
 
   RecipeModel.findById(id)
@@ -46,11 +45,9 @@ router.get('/recipe/:id', (req, res, next) => {
 router.get('/search', (req, res, next) => {
   // const searchTerm = req.query.searchInput
   // request('https://api.spoonacular.com/recipes/complexSearch?query=pasta&apiKey=62f15d05010744ed8127ef36815ed931', function(error, response, body) {
-  //     res.render('public/search.hbs', {recipes})
-  
+  //     res.render('public/search.hbs', {recipes})  
   // })
-  res.render('public/search.hbs')
-      
+  res.render('public/search.hbs')      
 });
 
 // {mealType:"vegan"}, {mealType:"meat"} 
