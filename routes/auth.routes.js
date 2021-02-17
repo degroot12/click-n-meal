@@ -61,7 +61,7 @@ router.post('/signin', (req, res, next) => {
         let isMatching = bcrypt.compare(password, result.password)
           if(isMatching){
             req.session.loggedInUser = result
-            res.redirect('/profile')
+            res.redirect('/selector')
           }
           else {
             res.render('auth/signin.hbs', {msg: 'Wrong password'})
@@ -91,7 +91,7 @@ router.get('/profile', checkLoggedInUser, (req, res, next) => {
   let email = req.session.loggedInUser.email;
   let username = req.session.loggedInUser.username;
   
-  res.render('selector.hbs', {email});
+  res.render('private/profile.hbs', {email});
 });
 
 // GET create
