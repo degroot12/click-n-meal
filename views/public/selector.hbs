@@ -1,15 +1,20 @@
-<h1>This is the selector page</h1>
+{{!-- <h1>This is the selector page</h1>
 <div id="main">
   <div id="search">
   
     <div class="custom-control custom-switch">
-      <input id="veganFilter" type="checkbox" onchange="handleCheckbox()" class="custom-control-input">
+      <input name="veganValue" id="veganFilter" type="checkbox" onchange="handleCheckbox()" class="custom-control-input">
       <label class="custom-control-label" for="customSwitches">Vegan</label>
+      <input name="timeValue" id="timeFilter" type="checkbox" onchange="handleCheckbox()" class="custom-control-input">
+      <label class="custom-control-label" for="customSwitches">Time</label>
+      <input name="priceValue" id="priceFilter" type="checkbox" onchange="handleCheckbox()" class="custom-control-input">
+      <label class="custom-control-label" for="customSwitches">Price</label>
+      <a href="/search?{{query}}">Filter</a>
     </div>
  
     </div>
   </div>
-</div>
+</div> --}}
 
 
 

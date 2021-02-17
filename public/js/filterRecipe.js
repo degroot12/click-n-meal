@@ -1,6 +1,8 @@
 function handleCheckbox() {
   let veganOn
-
+  let priceFilter
+  let timeFilter
+  console.log('handle check works')
   if (document.getElementById("veganFilter").checked){
     veganOn = "veganOn"
   }
@@ -8,6 +10,44 @@ function handleCheckbox() {
     veganOn = "veganOff"    
   }
 
-  axios.get(`http://localhost:3000/selector?isVegan=${veganOn}`)
+  if (document.getElementById("priceFilter").checked){
+    priceFilter = "lowPrice"
+  }
+  else {
+    priceFilter = "notLowPrice"    
+  }
 
+  if (document.getElementById("timeFilter").checked){
+    timeFilter = "shortTime"
+  }
+  else {
+    timeFilter = "noTime"    
+  }
+
+  //axios.get(`http://localhost:3000/search?isVegan=${veganOn}&maxTime=${timeFilter}&maxPrice=${priceFilter}`)
+  axios.get(`http://localhost:3000/selector?isVegan=${veganOn}&maxTime=${timeFilter}&maxPrice=${priceFilter}`)
+  
+  
 };
+// function setCheckboxInitialState(){
+//   handleCheckbox()
+//   console.log('hallo dit werkt')
+//   if(veganOn === 'veganOn'){
+//     document.getElementById('veganFilter').checked = true
+//   }
+//   else if(veganOn === 'veganOff'){
+//     document.getElementById('veganFilter').checked = false
+//   }
+//   else if(priceFilter === 'lowPrice'){
+//     document.getElementById('veganFilter').checked = true
+//   }
+//   else if(priceFilter === 'notlowPrice'){
+//     document.getElementById('veganFilter').checked = false
+//   }
+//   else if(timeFilter === 'veganOff'){
+//     document.getElementById('shortTime').checked = true
+//   }
+//   else if(timeFilter === 'veganOff'){
+//     document.getElementById('noTime').checked = false
+//   }
+// }
