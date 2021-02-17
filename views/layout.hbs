@@ -9,51 +9,58 @@
    <meta name="keywords" content="recipe, ingredients, calendarview">
    <meta name="author" content="Thomas de Groot and Cindy Teeven">
    <title>{{title}}</title>
-   {{!-- <link rel="icon" href="favicon.ico" type="https://genfavicon.com/tmp/icon_146ecb3ddd0e9a3cd2c047eddb100cb0.ico"> --}}
-   {{!-- <link rel="icon" type="favicon.ico" href="../public/images/favicon_clicknmeal.ico"/>--}}
    <link rel="icon" type="image/png" href="https://res.cloudinary.com/snowbird/image/upload/v1613475181/Click-n-meal/logo_bg_transp_64x64_nudugr.png"/> 
     
    <!-- CSS only -->
-   {{!-- <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-beta2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-BmbxuPwQa2lc/FVzBcNJ7UAyJxM6wuqIj61tLrc4wSX0szH/Ev+nYRRuWlolflfl" crossorigin="anonymous"> --}}
-   <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css">
-   <link rel="stylesheet" href="/stylesheets/style.css" />
-   <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
-   <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js" crossorigin="anonymous"></script>
-   <script src="https://cdnjs.cloudflare.com/ajax/libs/axios/0.21.1/axios.js" integrity="sha512-otOZr2EcknK9a5aa3BbMR9XOjYKtxxscwyRHN6zmdXuRfJ5uApkHB7cz1laWk2g8RKLzV9qv/fl3RPwfCuoxHQ==" crossorigin="anonymous"></script>
+   <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-beta2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-BmbxuPwQa2lc/FVzBcNJ7UAyJxM6wuqIj61tLrc4wSX0szH/Ev+nYRRuWlolflfl" crossorigin="anonymous">
+   <link rel="stylesheet" href="/stylesheets/style.css" />   
 
+   <!-- ed for navbar libr: jQuery first, then Popper.js, then Bootstrap JS -->
+   <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></script>
+   <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js" integrity="sha384-UO2eT0CpHqdSJQ6hJty5KVphtPhzWj9WO1clHTMGa3JDZwrnQq4sF86dIHNDz0W1" crossorigin="anonymous"></script>
+   <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js" integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM" crossorigin="anonymous"></script>
+   <!-- axios libr-->
+   <script src="https://cdnjs.cloudflare.com/ajax/libs/axios/0.21.1/axios.js" integrity="sha512-otOZr2EcknK9a5aa3BbMR9XOjYKtxxscwyRHN6zmdXuRfJ5uApkHB7cz1laWk2g8RKLzV9qv/fl3RPwfCuoxHQ==" crossorigin="anonymous"></script>
+   
 </head>
 
-<body>   
-   <nav class="navbar navbar-default ">
-   <div class="container-fluid bg-navbarcustom">
-      {{!-- buttons on the navbar ~toggle-dropdown button--}}
-      <div class="navbar-header">
-         <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#bs-example-navbar-collapse-1" aria-expanded="false">
-         <span class="sr-only">Toggle navigation</span>
-         {{!-- hamburger icon right --}}
-         <span class="icon-bar"></span>
-         <span class="icon-bar"></span>
-         <span class="icon-bar"></span>
-         </button>
-         <a class="navbar-brand" href="/selector">Select</a>
-         <a class="navbar-brand" href="/ingredients">Groceries</a>
-         <a class="navbar-brand" href="/calendar">Weekview</a>
-      </div>
+<body>  
 
-      {{!-- content in toggle/dropdown button--}}
-      <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
-         <ul class="nav navbar-nav">
-            <li class="active"><a href="/create">Create recipe<span class="sr-only">(current)</span></a></li>
-            <li class="active"><a href="/profile">My recipies<span class="sr-only">(current)</span></a></li>
-            <li class="active"><a href="/signup">Sign up<span class="sr-only">(current)</span></a></li>
-            <li class="active"><a href="/signin">Sign in<span class="sr-only">(current)</span></a></li>
-            <li class="active"><a href="/logout">Log out<span class="sr-only">(current)</span></a></li>
-            <li class="active"><a href="/about">About<span class="sr-only">(current)</span></a></li>
+   <nav class="navbar    navbar-default fixed-top navbar-light bg-navbarcustom">
+      <div class="container bg-navbarcustom">
+      <a class="navbar-brand" href="/selector">Home</a>
+      <a class="navbar-brand" href="/ingredients">Groceries</a>
+      <a class="navbar-brand" href="/calendar">Weekview</a>
+      <button class="navbar-toggler collapsed" type="button" data-toggle="collapse" data-target="#navbarText" aria-controls="navbarText" aria-expanded="false" aria-label="Toggle navigation" aria-expanded="false">
+         <span class="navbar-toggler-icon"></span>
+      </button>
+      </div>      
+
+      {{!-- drop down toggle bar --}}
+      <div class="collapse navbar-collapse" id="navbarText">
+         <ul class="navbar-nav mr-auto">
+            <li class="nav-item active">
+            <a class="nav-link" href="/create">Create recipe</span></a>
+            </li>
+            <li class="nav-item">
+            <a class="nav-link" href="/profile">My recipies</a>
+            </li>
+            <li class="nav-item">
+            <a class="nav-link" href="/signup">Sign up</a>
+            </li>
+            <li class="nav-item">
+            <a class="nav-link" href="/logout">Logout</a>
+            </li>
+            <li class="nav-item">
+            <a class="nav-link" href="/signin">Sign in</a>
+            </li>
+            <li class="nav-item">
+            <a class="nav-link" href="/about">About</a>
+            </li>
          </ul>
-      </div> {{!--.navbar-collapse--}}
-   </div> {{!--.container-fluid--}}
+      </div>
    </nav>
-   
+
    {{{body}}}
 
    <script src="/js/script.js"></script>
