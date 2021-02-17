@@ -1,7 +1,10 @@
 <h6>Welcome, {{username}}</h6>
 <h1>Create your own recipe!</h1>
 
-<form >
+
+
+
+<form method="POST" action='/create'>
   <div class="mb-3">
     <label for="exampleInputEmail1" class="form-label">Name</label>
     <input name="recipeName" type="text" class="form-control" id="recipeName" aria-describedby="emailHelp">
@@ -11,8 +14,14 @@
     <input name="description" type="text" class="form-control" id="description">
   </div>
 
+  {{!-- Conditionally render the msg --}}
+  {{#if msg}}
+    <div class="alert alert-warning">{{msg}}</div>
+  {{/if}}
+
+
     <div class="mb-3">
-    <label for="exampleInputPassword2" class="form-label">Ingredients</label>
+    <label for="ingrName" class="form-label">Ingredients</label>
     <select name="ingrName" id="ingrList">
       {{#each allIngr}}
       <option value="{{this.name}}" {{#selected}}selected="selected"{{/selected}} >{{this.name}}</option>
@@ -82,7 +91,6 @@ for (let i = 0; i < ingUnit.length; i++ ){
 
 axios.post('http://localhost:3000/create', {newIngredients, elemenRecipeName, elemenDescription,
   elemenInstructions, elemenMealType, elemenTime, elemenPrice, elemenImage, elemenCreator, elemenSource})
-console.log('handlebar: ', newIngredients)
 }
 
 // create dynamic field for ingredients (name, unit, amount)
@@ -123,7 +131,7 @@ function createNewElement() {
 </script>
 
   <div id="dynamicCheck">
-    <input id="plusButton" type="button" value="+" class="btn btn-primary" onclick="createNewElement();" />
+    <input id="plusButton" type="button" value="+" class="btn btn-primary bg-lgtblue" onclick="createNewElement();" />
   </div>
   <div class="mb-3">
     <label for="exampleInputPassword2" class="form-label">Instructions</label>
@@ -157,18 +165,13 @@ function createNewElement() {
   </div>
   <div class="mb-3">
     <label for="exampleInputPassword2" class="form-label">Creator</label>
-    <input name="creator" type="text" class="form-control" id="creator">
+    <input name="creator" type="text" class="form-control" id="creator" placeholder="{{username}}">
   </div>
   <div class="mb-3">
     <label for="exampleInputPassword2" class="form-label">Source</label>
     <input name="source" type="text" class="form-control" id="source">
   </div>
-  <button type="submit" class="btn btn-primary" onclick="submitHandler();">Submit</button>
-
-{{!-- Conditionally render the msg --}}
-{{#if msg}}
-<div>{{msg}}</div>
-{{/if}}
+  <button type="submit" class="mt-5 w-100 btn btn-lg btn-primary bg-lgtblue" onclick="submitHandler();">Create!</button>
 
 </form>
 

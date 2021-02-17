@@ -1,7 +1,6 @@
 const router = require('express').Router();
 const bcrypt = require('bcryptjs');
 const UserModel = require('../models/User.model.js')
-const IngredientsModel = require('../models/Ingredients.model.js')
 const RecipeModel = require('../models/Recipe.model.js')
 
 // GET Route Sign-up Page
@@ -93,61 +92,6 @@ router.get('/profile', checkLoggedInUser, (req, res, next) => {
   
   res.render('private/profile.hbs', {email});
 });
-
-// GET create
-router.get('/create', checkLoggedInUser, (req, res, next) => {
-  let username = req.session.loggedInUser.username;
-  
-  IngredientsModel.find({})
-  .then((data) => {
-    let allIngr = data
-    res.render('private/create.hbs', {allIngr, username})
-  })
-  .catch((err) => {
-    console.log(err)
-  })
-})
-
-// GET edit
-router.get('/edit/:id', checkLoggedInUser, (req, res, next) => {
-  let username = req.session.loggedInUser.username;
-  const id = req.params.id
-
-  RecipeModel.findById(id)
-    .populate('allIngr')
-    .then((recipe) => {
-      res.render('private/edit.hbs', {recipe, username})
-      // console.log(recipe)
-    })
-    .catch((err) => {
-      next(err)
-    })  
-})
-
-// POST edit
-router.post('/edit/:id', checkLoggedInUser, (req, res, next) => {
-  const{recipeName} = req.body
-  const id = req.params.id
-
-  let updateRecipe = {
-    name: recipeName
-  }
-
-  RecipeModel.findByIdAndUpdate(id, updateRecipe)
-    .then(() => {
-      res.redirect('/selector')
-      console.log('save ', updateRecipe)
-    })
-    .catch((err) => {
-      next(err)
-    })
-})
-
-// router.get('/', checkLoggedInUserHome, (req, res, next) => {
-//   let email = req.session.loggedInUser.email;
-//   res.render('public/selector.hbs', {email})
-// })
-
 
 // LOGOUT
 router.get('/logout', (req, res) => {
