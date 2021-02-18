@@ -53,32 +53,15 @@ router.post('/create', (req, res, next) => {
     instructions: elemenInstructions,
     image: elemenImage
   }
-  const msg = encodeURIComponent('Your recipe has succesfully been created')
+  const msg = 'Your recipe has succesfully been created'
 
   console.log('check here')
   
   RecipeModel.create(newRecipe)
-    .then((recipe) => {
-      if (recipe.status === 200) {
-        console.log("REDIRECTION avec status => ", recipe.status)
-         console.log('check 2 ', msg)
-        // window.location = "/selector";     
-      }
-
-      
-      // after creating, show detailspage of recipe
-      // passing a msg for on the recipe page
-<<<<<<< HEAD
-      // res.redirect('/recipe')
-      // res.redirect(`/recipe/${recipe._id}/?passMsg=`+ msg)
-
-     
-      
-=======
-      console.log('---------------------------')
-      console.log('create post')
-      res.json({url: `/recipe/${recipe._id}/?passMsg=${msg}`})
->>>>>>> origin/main
+    .then((recipe) => {      
+      // after creating, show message of succesfully created     
+      // render does not work because of using axios.post in handlebar 'create' 
+      res.render('private/create.hbs', {recipe, username, msg})
     })
 
     .catch((err) => {
