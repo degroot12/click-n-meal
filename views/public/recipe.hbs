@@ -1,7 +1,10 @@
-<h1>Explore your recipe!</h1>
+<h1 class="text-center">Explore your recipe!</h1>
 
-<div class="py-5">
-  <div class="container">
+  {{#if msgNewRecipeCreated}}
+    <div class="m-5 mb-2 alert alert-warning">{{msgNewRecipeCreated}}</div>
+  {{/if}}
+
+  <div class="container mt-3">
       <div class="col-md-4">
         <div class="card">
           <div class="image">
@@ -17,17 +20,23 @@
  
             {{#each recipe.ingredients}}
               <div>{{amount}} {{unit}} {{this.name}}</div>
-            {{/each}}           
+            {{/each}} 
 
-            <div>
-              <a href="/edit/{{recipe.id}}"><button type="submit" class="mt-5 w-100 btn btn-lg btn-primary bg-lgtblue">Edit</button>
+
+            <div class="row mt-3">
+              <div class="col">
+                <a href="/edit/{{recipe.id}}" ><button type="submit" class="mt-2 w-100 btn btn-lg btn-primary bg-lgtblue">Edit</button></a>
+              </div>
+              <div class="col">
+                <a href="/selector"><button type="submit" class="mt-2 w-100 btn btn-lg btn-primary bg-lgtred">Delete</button></a>
+              </div>
             </div>
             
           </div>
         </div>
       </div>
   </div>
-</div>
+
 
 
 {{!-- Conditionally render the msg --}}

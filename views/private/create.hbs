@@ -1,7 +1,7 @@
-<h6>Welcome, {{username}}</h6>
-<h1>Create your own recipe!</h1>
+<h6 class="text-center">Welcome, {{username}}</h6>
+<h1 class="text-center">Create your own recipe!</h1>
 
-<form >
+<form method="POST" action='/create'>
   <div class="mb-3">
     <label for="exampleInputEmail1" class="form-label">Name</label>
     <input name="recipeName" type="text" class="form-control" id="recipeName" aria-describedby="emailHelp">
@@ -11,8 +11,8 @@
     <input name="description" type="text" class="form-control" id="description">
   </div>
 
-    <div class="mb-3">
-    <label for="exampleInputPassword2" class="form-label">Ingredients</label>
+  <div class="mb-3">
+    <label for="ingrName" class="form-label">Ingredients</label>
     <select name="ingrName" id="ingrList">
       {{#each allIngr}}
       <option value="{{this.name}}" {{#selected}}selected="selected"{{/selected}} >{{this.name}}</option>
@@ -37,94 +37,93 @@
     <input name="ingrAmount" type="text" class="form-control" id="ingrAmount" required>
   </div>
 
-
+{{!-- Calling script below for adding new recipes --}}
   <div id="newElementId"></div>
 
 {{!-- Handling the form values (and dynamic created values of ingredients) in a axios post  --}}
 <script type="text/JavaScript">
 
-function submitHandler(){
-  console.log('Works Yayyy!')
-  let elemenUnit = document.getElementsByName('ingrUnit')
-  let elemenName = document.getElementsByName('ingrName')
-  let elemenAmount = document.getElementsByName('ingrAmount')
-  let elemenRecipeName = document.getElementById('recipeName').value;
-  let elemenDescription = document.getElementById('description').value;
-  let elemenInstructions = document.getElementById('instructions').value;
-  let elemenMealType = document.getElementById('mealType').value;
-  let elemenTime = document.getElementById('time').value;
-  let elemenPrice = document.getElementById('price').value;
-  let elemenImage = document.getElementById('image').value;
-  let elemenCreator = document.getElementById('creator').value;
-  let elemenSource = document.getElementById('source').value;
+  function submitHandler(){
+    console.log('Works Yayyy!')
+    let elemenUnit = document.getElementsByName('ingrUnit')
+    let elemenName = document.getElementsByName('ingrName')
+    let elemenAmount = document.getElementsByName('ingrAmount')
+    let elemenRecipeName = document.getElementById('recipeName').value;
+    let elemenDescription = document.getElementById('description').value;
+    let elemenInstructions = document.getElementById('instructions').value;
+    let elemenMealType = document.getElementById('mealType').value;
+    let elemenTime = document.getElementById('time').value;
+    let elemenPrice = document.getElementById('price').value;
+    let elemenImage = document.getElementById('image').value;
+    let elemenCreator = document.getElementById('creator').value;
+    let elemenSource = document.getElementById('source').value;
 
-  let ingUnit = []
-  let ingAmount = []
-  let ingName = []
+    let ingUnit = []
+    let ingAmount = []
+    let ingName = []
 
-  elemenUnit.forEach((element) => {
-      ingUnit.push(element.value)
-  })
-  elemenName.forEach((element) => {
-      ingName.push(element.value)
-  })
-  elemenAmount.forEach((element) => {
-      ingAmount.push(element.value)
-  })
+    elemenUnit.forEach((element) => {
+        ingUnit.push(element.value)
+    })
+    elemenName.forEach((element) => {
+        ingName.push(element.value)
+    })
+    elemenAmount.forEach((element) => {
+        ingAmount.push(element.value)
+    })
 
-let newIngredients = []
-for (let i = 0; i < ingUnit.length; i++ ){
-   let Ingr = {name: ingName[i],
-               amount: ingAmount[i],
-               unit: ingUnit[i]}
-  newIngredients.push(Ingr)
-}
+  let newIngredients = []
+  for (let i = 0; i < ingUnit.length; i++ ){
+    let Ingr = {name: ingName[i],
+                amount: ingAmount[i],
+                unit: ingUnit[i]}
+    newIngredients.push(Ingr)
+  }
 //https://click-n-meal.herokuapp.com/create
 //http://localhost:3000/create
-axios.post('http://localhost:3000/create', {newIngredients, elemenRecipeName, elemenDescription,
-  elemenInstructions, elemenMealType, elemenTime, elemenPrice, elemenImage, elemenCreator, elemenSource})
-console.log('handlebar: ', newIngredients)
-}
+  axios.post('http://localhost:3000/create', {newIngredients, elemenRecipeName, elemenDescription,
+    elemenInstructions, elemenMealType, elemenTime, elemenPrice, elemenImage, elemenCreator, elemenSource})
+  }
 
-// create dynamic field for ingredients (name, unit, amount)
-function createNewElement() {
-    // First create a DIV element.
-	const txtNewInputBox = document.createElement('div');
+  // create dynamic field for ingredients (name, unit, amount)
+  function createNewElement() {
+      // First create a DIV element.
+    const txtNewInputBox = document.createElement('div');
 
-    // Then add the content (a new input box) of the element.
-	txtNewInputBox.innerHTML = `<div class="mb-3">
-    <label for="exampleInputPassword2" class="form-label">Ingredients</label>
-    <select name="ingrName" id="inglist">
-      {{#each allIngr}}
-      <option value="{{this.name}}" {{#selected}}selected="selected"{{/selected}} >{{this.name}}</option>
-      {{/each}}
-    </select>
+      // Then add the content (a new input box) of the element.
+    txtNewInputBox.innerHTML = `<div class="mb-3">
+      <label for="exampleInputPassword2" class="form-label">Ingredients</label>
+      <select name="ingrName" id="inglist">
+        {{#each allIngr}}
+        <option value="{{this.name}}" {{#selected}}selected="selected"{{/selected}} >{{this.name}}</option>
+        {{/each}}
+      </select>
+      </div>
+    <div class="mb-3">
+      <label for="cars">Units:</label>
+      <select name="ingrUnit" id="cars">
+        <option value="piece">piece</option>
+        <option value="g">g</option>
+        <option value="ml">ml</option>
+        <option value="l">l</option>
+        <option value="spoon">spoon</option>
+        <option value="tablespoon">tablespoon</option>
+        <option value="pinch">pinch</option>
+      </select>
+      <br><br>
     </div>
-  <div class="mb-3">
-    <label for="cars">Units:</label>
-    <select name="ingrUnit" id="cars">
-      <option value="piece">piece</option>
-      <option value="g">g</option>
-      <option value="ml">ml</option>
-      <option value="l">l</option>
-      <option value="spoon">spoon</option>
-      <option value="tablespoon">tablespoon</option>
-      <option value="pinch">pinch</option>
-    </select>
-    <br><br>
-  </div>
-  <div class="mb-3">
-    <label for="exampleInputPassword2" class="form-label">Amount</label>
-    <input name="ingrAmount" type="text" class="form-control" id="exampleInputDescription2">
-  </div>`;
+    <div class="mb-3">
+      <label for="exampleInputPassword2" class="form-label">Amount</label>
+      <input name="ingrAmount" type="text" class="form-control" id="exampleInputDescription2">
+    </div>`;
 
-    // Finally put it where it is supposed to appear.
-	document.getElementById("newElementId").appendChild(txtNewInputBox);
-}
+      // Finally put it where it is supposed to appear.
+    document.getElementById("newElementId").appendChild(txtNewInputBox);
+  }
 </script>
 
   <div id="dynamicCheck">
-    <input id="plusButton" type="button" value="+" class="btn btn-primary" onclick="createNewElement();" />
+    <input id="plusButton" type="button" value="+" class="btn btn-primary bg-lgtblue" onclick="createNewElement();" />
   </div>
   <div class="mb-3">
     <label for="exampleInputPassword2" class="form-label">Instructions</label>
@@ -163,17 +162,13 @@ function createNewElement() {
   </div>
   <div class="mb-3">
     <label for="exampleInputPassword2" class="form-label">Creator</label>
-    <input name="creator" type="text" class="form-control" id="creator">
+    <input name="creator" type="text" class="form-control" id="creator" placeholder="{{username}}">
   </div>
   <div class="mb-3">
     <label for="exampleInputPassword2" class="form-label">Source</label>
     <input name="source" type="text" class="form-control" id="source">
   </div>
-  <button type="submit" class="btn btn-primary" onclick="submitHandler();">Submit</button>
-
-{{!-- Conditionally render the msg --}}
-{{#if msg}}
-<div>{{msg}}</div>
-{{/if}}
-
+  <button type="submit" class="mt-5 w-100 btn btn-lg btn-primary bg-lgtblue" onclick="submitHandler();">Create!</button>
 </form>
+
+

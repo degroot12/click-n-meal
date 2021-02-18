@@ -9,10 +9,13 @@ body {
   padding: 0;  
   align-items: center;
   background-color: #f5f5f5;
-  padding-top: 70px;
+  padding-top: 5em;
 }
 
-
+/* for setting the dropdown list form*/
+select, option { 
+  width: 200px; 
+}
 a {
   color: #00b7ff; }
 
@@ -103,6 +106,10 @@ h1 {
 
 .bg-lgtgreen {
   background-color:#50ce93 
+}
+
+.bg-lgtred {
+  background-color:#e77070 
 }
 
 .bg-navbarcustom {
