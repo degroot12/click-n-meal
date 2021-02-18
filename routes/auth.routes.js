@@ -44,7 +44,7 @@ router.post('/signup', (req, res, next) => {
   UserModel.create({username, email, password: hash})
     .then(() => {
       console.log(hash)
-      res.redirect('/')
+      res.redirect('/signin')
     })
     .catch((err) => {
       next(err)

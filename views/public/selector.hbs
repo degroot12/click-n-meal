@@ -1,4 +1,4 @@
-<h1 class="text-center">This is the selector page</h1>
+<h1 class="text-center">Select your recipe!</h1>
 {{!-- <div id="main">
   <div id="search">
     <h1>Length is {{length}}</h1>
@@ -71,6 +71,9 @@
   <a class="filterLink veganLink" href="/search?isVegan=veganOn&maxPrice=cheap">CheapVegan</a>
   <a class="filterLink allMeals" href="/search?maxTime=shortTime">Fast</a>
   <a class="filterLink allMeals" href="/search?maxPrice=cheap">Cheap</a>
+</div>
+<div class="allFilterLinks">
+  <a class="randomRecLink" href="/recipe/{{id}}">Give me a random recipe</a>
 </div>
 {{#if msgRecipeDel}}
   <div class="m-5 mb-2 alert alert-warning">{{msgRecipeDel}}</div>

@@ -192,3 +192,8 @@ h1 {
   align-items: center;
   flex-direction: column;
 }
+
+.randomRecLink{
+  text-decoration: none;
+  color:#36b3c9;
+}
