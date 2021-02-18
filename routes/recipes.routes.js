@@ -54,13 +54,27 @@ router.post('/create', (req, res, next) => {
     image: elemenImage
   }
   const msg = encodeURIComponent('Your recipe has succesfully been created')
+
+  console.log('check here')
   
   RecipeModel.create(newRecipe)
     .then((recipe) => {
+      if (recipe.status === 200) {
+        console.log("REDIRECTION avec status => ", recipe.status)
+         console.log('check 2 ', msg)
+        // window.location = "/selector";     
+      }
+
+      
       // after creating, show detailspage of recipe
       // passing a msg for on the recipe page
-      res.redirect(`/recipe/${recipe._id}/?passMsg=`+ msg)
+      // res.redirect('/recipe')
+      // res.redirect(`/recipe/${recipe._id}/?passMsg=`+ msg)
+
+     
+      
     })
+
     .catch((err) => {
       next(err)
     })
