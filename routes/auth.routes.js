@@ -43,7 +43,6 @@ router.post('/signup', (req, res, next) => {
   let hash = bcrypt.hashSync(password, salt);
   UserModel.create({username, email, password: hash})
     .then(() => {
-      console.log(hash)
       res.redirect('/')
     })
     .catch((err) => {
