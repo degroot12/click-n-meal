@@ -88,10 +88,12 @@ const checkLoggedInUser = (req, res, next) => {
 
 // GET profile
 router.get('/profile', checkLoggedInUser, (req, res, next) => {
-  let email = req.session.loggedInUser.email;
-  let username = req.session.loggedInUser.username;
+  const email = req.session.loggedInUser.email;
+  const username = req.session.loggedInUser.username;
+  const recipesCreated = req.session.loggedInUser.favoRecipe;
+
   
-  res.render('private/profile.hbs', {email});
+  res.render('private/profile.hbs', {username, recipesCreated});
 });
 
 // LOGOUT

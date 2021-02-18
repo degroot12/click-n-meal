@@ -3,6 +3,7 @@ const RecipeModel = require('../models/Recipe.model.js')
 const IngredientsModel = require('../models/Ingredients.model.js')
 const axios = require('axios')
 const uploader = require('../middlewares/cloudinary.config');
+const UserModel = require('../models/User.model.js')
 
 // PROTECTED ROUTES
 const checkLoggedInUser = (req, res, next) => {
@@ -59,13 +60,15 @@ router.post('/create', (req, res, next) => {
     .then((recipe) => {
       // after creating, show detailspage of recipe
       // passing a msg for on the recipe page
-      console.log('---------------------------')
-      console.log('create post')
-      res.json({url: `/recipe/${recipe._id}/?passMsg=${msg}`})
+      res.redirect(`/recipe/${recipe._id}/?passMsg=`+ msg)
     })
     .catch((err) => {
       next(err)
     })
+
+  // UserModel.findById(id)
+
+
 })
 
 // GET /edit
