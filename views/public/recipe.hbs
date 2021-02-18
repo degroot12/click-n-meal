@@ -1,5 +1,8 @@
 <h1 class="text-center">Explore your recipe!</h1>
 
+{{#if msgNewRecipeCreated}}
+  <div class="m-5 mb-2 alert alert-warning">{{msgNewRecipeCreated}} or go back <a href="/selector">home</a> to review all the recipes</div>
+{{/if}}
 
   <div class="container mt-3">
       <div class="col-md-4">

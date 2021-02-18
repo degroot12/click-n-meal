@@ -69,7 +69,7 @@ router.post('/create', (req, res, next) => {
     })
 })
 
-// GET /edit
+// GET /edit/:id
 router.get('/edit/:id', checkLoggedInUser, (req, res, next) => {
   let username = req.session.loggedInUser.username;
   const id = req.params.id
@@ -88,22 +88,28 @@ router.get('/edit/:id', checkLoggedInUser, (req, res, next) => {
 //POST route for editing
 router.post('/edit/:id', (req, res, next) => {
   const id = req.params.id;
-  const {name, description, ingredients, ingrAmount, ingrUnit, mealType, time, price, image, instructions, creator, source} = req.body
+  // console.log('req body: ', req.body)
+  // console.log('req recipeName: ', req.body.recipeName)
+  const recipeName = req.body.recipeName
   
   const editedRecipe = {
-    name:name, 
-    // description:description,
-    // ingredients:{
+    name:req.body.recipeName, 
+    description:req.body.description,
+    // not activated yet
+    //  ingredients:{
     //   name: ingredients,
     //   amount: ingrAmount,
     //   unit: ingrUnit
-    // }, mealType, time, price, image, instructions, creator, source
+    // }, 
+    // mealType, time, price, image, instructions, creator, source
   }
-  console.log('check 1')
+
+  const msgEdit = 'Your recipe has succesfully been edited'
+
   RecipeModel.findByIdAndUpdate(id, editedRecipe)
     .then(() => {
-      res.redirect(`/recipe/${id}`)
-      console.log('check 2')
+      res.redirect(`/recipe/${id}/?passMsgEdit=${msgEdit}`)
+      console.log('check 2: ', editedRecipe, msgEdit)
     })
     .catch((err) => {
       next(err)

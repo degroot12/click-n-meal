@@ -25,11 +25,17 @@ router.get('/',(req, res, next) => {
 // GET Route for recipe page
 router.get('/recipe/:id', (req, res, next) => {
   const id = req.params.id
+  console.log('req body------', req.query)
   
   // if msg needs to be appear after creating new recipe
   let msgNewRecipeCreated 
   if (Object.keys(req.query).length!=0) {
-    msgNewRecipeCreated = req.query.passMsg
+    msgNewRecipeCreated = req.query.passMsgEdit
+  }
+
+  let msgEditRecipe
+  if (Object.keys(req.query).length!=0) {
+    msgEditRecipe = req.query.msgEdit
   }
 
   RecipeModel.findById(id)
