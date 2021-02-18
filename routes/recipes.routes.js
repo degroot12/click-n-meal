@@ -38,6 +38,7 @@ router.get('/create', checkLoggedInUser, (req, res, next) => {
 // POST route for create
 router.post('/create', (req, res, next) => {
   let username = req.session.loggedInUser.username;
+  let userPerson = req.session.loggedInUser
 
   const {newIngredients, elemenRecipeName, elemenDescription,
     elemenInstructions, elemenMealType, elemenTime, elemenPrice, elemenImage, elemenCreator, elemenSource} = req.body
@@ -59,9 +60,18 @@ router.post('/create', (req, res, next) => {
   console.log('check here')
   
   RecipeModel.create(newRecipe)
-    .then((recipe) => {      
-      // after creating, show message of succesfully created     
-      // render does not work because of using axios.post in handlebar 'create' 
+    .then(() => {      
+    //   // after creating, show message of succesfully created     
+    //   // render does not work because of using axios.post in handlebar 'create' 
+    console.log('-----', UserModel)
+      // UserModel.findOneAndUpdate({creator: username}, {favoRecipe: newRecipe}, {new: true})
+      // //console.log(newRecipe)
+      userPerson.favoRecipe.push(newRecipe)
+      console.log(userPerson.favoRecipe)
+    })
+    
+    .then((recipe) => {
+      console.log('---yeahhh----')
       res.render('private/create.hbs', {recipe, username, msg})
     })
 
@@ -69,8 +79,9 @@ router.post('/create', (req, res, next) => {
       next(err)
     })
 
-  // UserModel.findById(id)
-
+  // UserModel.findOneAndUpdate({creator: username}, {$push: {favoRecipe: newRecipe}}, {new: true}
+  // )
+  //   console.log("userMOdel",UserModel)
 
 })
 
