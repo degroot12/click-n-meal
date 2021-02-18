@@ -68,11 +68,17 @@ router.post('/create', (req, res, next) => {
       
       // after creating, show detailspage of recipe
       // passing a msg for on the recipe page
+<<<<<<< HEAD
       // res.redirect('/recipe')
       // res.redirect(`/recipe/${recipe._id}/?passMsg=`+ msg)
 
      
       
+=======
+      console.log('---------------------------')
+      console.log('create post')
+      res.json({url: `/recipe/${recipe._id}/?passMsg=${msg}`})
+>>>>>>> origin/main
     })
 
     .catch((err) => {
