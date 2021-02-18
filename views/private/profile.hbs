@@ -1,4 +1,28 @@
 <h1>This page is private</h1>
-<h2>Welcome {{username}}</h2>
+<h3>Welcome, {{username}}</h3>
 
 <h3>Here you can find your favorite recipes!</h3>
+
+<div>Recipes that I created:</div>
+
+<div class="container">
+  <div class="row hidden-md-up">
+    <div class="col-md-4">
+      {{#each recipesCreated}}
+      <div class="card mb-4">
+        <div class="image">
+          <img src= "{{this.image}}" />
+        </div>
+        <div class="card-block">
+          <h4 class="card-title">{{this.name}}</h4>
+          <h6 class="card-subtitle text-muted">{{this.time}} min, {{this.mealType}}</h6>
+          <p class="card-text p-y-1">{{this.description}}</p>
+          {{!-- <div class="text-center">
+            <a href="/recipe/{{this._id}}" role="botton" class="w-40 mb-2 mt-3 center btn btn-lg btn-primary bg-lgtblue">Open</a>
+          </div> --}}
+        </div>
+      </div>
+      {{/each}}
+    </div>
+  </div><br>
+</div>
