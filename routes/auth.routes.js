@@ -2,7 +2,7 @@ const router = require('express').Router();
 const bcrypt = require('bcryptjs');
 const UserModel = require('../models/User.model.js')
 const RecipeModel = require('../models/Recipe.model.js')
-const uploader = require('../middlewares/cloudinary.config');
+
 
 // GET Route Sign-up Page
 router.get('/signup', (req, res, next) => {
