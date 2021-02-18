@@ -88,22 +88,20 @@ router.get('/edit/:id', checkLoggedInUser, (req, res, next) => {
 //POST route for editing
 router.post('/edit/:id', (req, res, next) => {
   const id = req.params.id;
-  // console.log('req body: ', req.body)
-  // console.log('req recipeName: ', req.body.recipeName)
-  const recipeName = req.body.recipeName
-  
+ 
+  // todo: adding updating drop down list 
   const editedRecipe = {
     name:req.body.recipeName, 
     description:req.body.description,
-    // not activated yet
-    //  ingredients:{
-    //   name: ingredients,
-    //   amount: ingrAmount,
-    //   unit: ingrUnit
-    // }, 
-    // mealType, time, price, image, instructions, creator, source
+    // mealType: req.body.mealType, 
+    time: req.body.time,
+    // price: req.body.price,
+    instructions: req.body.instructions,
+    source: req.body.source   
   }
 
+  // price, image, instructions, creator, source
+  console.log('editR: ', editedRecipe)
   const msgEdit = 'Your recipe has succesfully been edited'
 
   RecipeModel.findByIdAndUpdate(id, editedRecipe)
