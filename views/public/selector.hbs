@@ -15,7 +15,63 @@
     </div>
   </div>
 </div> --}}
+{{!-- 
+<div class="dropdown">
+  <button class="collapsed" type="button" data-toggle="collapse" data-target="#dropDownText" aria-controls="navbarText" aria-expanded="false" aria-label="Toggle navigation" aria-expanded="false">
+    Vegan/Vegatarian
+  </button>
+</div>
+      <div class="collapse " id="dropDownText">
+         <ul class=" mr-auto">
+            <li class="nav-item">
+            <a class="nav-link" name="veganValue" id="veganFilter" onchange="handleCheckbox()" href="/search?isVegan=veganOn">Vegan</a>
+            </li>
+            <li class="nav-item">
+            <a class="nav-link" href="/search">Vegetarian</a>
+            </li>
+            <li class="nav-item">
+            <a class="nav-link" href="/search">All</a>
+            </li>
+         </ul>
+      </div>
+<div class="dropdown">
+  <button class="collapsed" type="button" data-toggle="collapse" data-target="#dropDownTime" aria-controls="navbarText" aria-expanded="false" aria-label="Toggle navigation" aria-expanded="false">
+    Time
+  </button>
+</div>
+      <div class="collapse " id="dropDownTime">
+         <ul class=" mr-auto">
+            <li class="nav-item">
+            <a class="nav-link" name="veganValue" id="veganFilter" onchange="handleCheckbox()" href="/search?maxTime=shortTime">Fast</a>
+            </li>
+            <li class="nav-item">
+            <a class="nav-link" href="/search">All</a>
+            </li>
+         </ul>
+      </div>
+<div class="dropdown">
+  <button class="collapsed" type="button" data-toggle="collapse" data-target="#dropDownPrice" aria-controls="navbarText" aria-expanded="false" aria-label="Toggle navigation" aria-expanded="false">
+    Price
+  </button>
+</div>
+      <div class="collapse " id="dropDownPrice">
+         <ul class=" mr-auto">
+            <li class="nav-item">
+            <a class="nav-link" name="veganValue" id="veganFilter" onchange="handleCheckbox()" href="/search?isVegan=veganOn">Cheap</a>
+            </li>
+            <li class="nav-item">
+            <a class="nav-link" href="/search">All</a>
+            </li>
+         </ul>
+      </div> --}}
 
+<div class="allFilterLinks">
+  <a class="filterLink veganLink" href="/search?isVegan=veganOn">Vegan</a>
+  <a class="filterLink veganLink" href="/search?isVegan=veganOn&maxTime=shortTime">FastVegan</a>
+  <a class="filterLink veganLink" href="/search?isVegan=veganOn&maxPrice=cheap">CheapVegan</a>
+  <a class="filterLink allMeals" href="/search?maxTime=shortTime">Fast</a>
+  <a class="filterLink allMeals" href="/search?maxPrice=cheap">Cheap</a>
+</div>
 {{#if msgRecipeDel}}
   <div class="m-5 mb-2 alert alert-warning">{{msgRecipeDel}}</div>
 {{/if}}

@@ -50,6 +50,12 @@ router.get('/recipe/:id', (req, res, next) => {
 
 // GET Route for search page
 router.get('/search', (req, res, next) => {
+  let veganOn = req.query.isVegan
+  let mealTypeArr ={}
+  if(veganOn === 'veganOn'){
+    mealTypeArr = {mealType:'vegan'}
+  }
+
   // let mealTypeArr = {} //default filter
   // let veganOn = req.query.isVegan
   // // if(veganOn === undefined){
@@ -66,26 +72,26 @@ router.get('/search', (req, res, next) => {
   // }
   // console.log('mealtype:', mealTypeArr)
 
-  // let timeArr = {} //default filter
-  // let maxTime = req.query.maxTime
-  // console.log('maxTime: ', maxTime)
-  // if (maxTime == "shortTime") {
-  //   timeArr = {time: {$lt: 15}}
-  //   console.log('time short')
-  // }
+  let timeArr = {} //default filter
+  let maxTime = req.query.maxTime
+  //console.log('maxTime: ', maxTime)
+  if (maxTime == "shortTime") {
+    timeArr = {time: {$lt: 15}}
+    //console.log('time short')
+  }
   // else if (maxTime == "notShortTime") {
   //   timeArr = {time: {$gte: 15}}
   //   console.log('time all')
   // }
   // console.log('time:', timeArr)
 
-  // let priceArr = {} //default filter
-  // let maxPrice = req.query.maxPrice
-  // console.log('maxPrice: ', maxPrice)
-  // if (maxPrice == "lowPrice") {
-  //   priceArr = {priceCategory:'cheap'}
-  //   console.log('price low')
-  // }
+  let priceArr = {} //default filter
+  let maxPrice = req.query.maxPrice
+  //console.log('maxPrice: ', maxPrice)
+  if (maxPrice == "cheap") {
+    priceArr = {priceCategory:'cheap'}
+    //console.log('price low')
+  }
   // else if (maxPrice == "notLowPrice") {
   //   priceArr = {priceCategory:'normal'}
   //   console.log('price all')
@@ -98,7 +104,7 @@ router.get('/search', (req, res, next) => {
 
   // let query = `isVegan=${veganOn}&maxTime=${maxTime}&maxPrice=${maxPrice}`
   //let query = `isVegan=${veganOn}&maxTime=${timeFilter}&maxPrice=${priceFilter}`
-  RecipeModel.find()
+  RecipeModel.find({$and: [mealTypeArr, timeArr, priceArr] })
   .then((recipes) => {
     // console.log(recipes)
     res.render('public/search.hbs', {recipes})
@@ -117,6 +123,7 @@ router.get('/search', (req, res, next) => {
 
 
 router.post('/selector', (req, res) => {
+  
   let {isVegan: veganOn, maxTime, maxPrice} = req.body
 
   let mealTypeArr = {} //default filter
@@ -195,6 +202,7 @@ router.get('/selector', (req, res) => {
         res.render('public/selector.hbs', {recipes})
         console.log('check2')
       }   
+
     
   })
   .catch((err) => {                                                                                                                                                                                                

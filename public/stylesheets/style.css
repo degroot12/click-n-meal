@@ -157,3 +157,38 @@ h1 {
 /* 
 #sourceMappingURL=style.css.map
  */
+
+ .filterLink {
+   text-decoration: none;
+   border: #e77070;
+   margin: 5px;
+ }
+
+ .allFilterLinks{
+   display: flex;
+   justify-content: center;
+ }
+
+ .veganLink{
+   color: #50ce93;
+ }
+
+ .allMeals{
+   color: #312c17;
+ }
+
+ .container {
+   display: flex;
+   justify-content: center;
+ }
+
+.row{
+  display: flex;
+  justify-content: center;
+}
+
+.topText{
+  display: flex;
+  align-items: center;
+  flex-direction: column;
+}
