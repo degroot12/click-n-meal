@@ -59,7 +59,9 @@ router.post('/create', (req, res, next) => {
     .then((recipe) => {
       // after creating, show detailspage of recipe
       // passing a msg for on the recipe page
-      res.redirect(`/recipe/${recipe._id}/?passMsg=`+ msg)
+      console.log('---------------------------')
+      console.log('create post')
+      res.json({url: `/recipe/${recipe._id}/?passMsg=${msg}`})
     })
     .catch((err) => {
       next(err)

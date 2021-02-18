@@ -17,10 +17,10 @@ const checkLoggedInUserHome = (req, res, next) => {
 };
 
 // GET route for the Starter page
-// router.get('/',(req, res, next) => {
-//   console.log('-------------COMING HERE---------------')
-//   res.redirect('/selector')
-// });
+router.get('/',(req, res, next) => {
+  console.log('-------------COMING HERE---------------')
+  res.redirect('/selector')
+});
 
 // GET Route for recipe page
 router.get('/recipe/:id', (req, res, next) => {
@@ -34,6 +34,7 @@ router.get('/recipe/:id', (req, res, next) => {
 
   RecipeModel.findById(id)
     .then((recipe) => {
+      console.log(recipe.image)
       res.render('public/recipe.hbs', {recipe, msgNewRecipeCreated})
     })
     .catch((err) => {

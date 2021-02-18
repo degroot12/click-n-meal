@@ -1,7 +1,7 @@
 <h6 class="text-center">Welcome, {{username}}</h6>
 <h1 class="text-center">Create your own recipe!</h1>
  {{!-- method="POST" action='/create' --}}
-<form  method="POST" action='/create'>
+<form  >
   <div class="mb-3">
     <label for="exampleInputEmail1" class="form-label">Name</label>
     <input name="recipeName" type="text" class="form-control" id="recipeName" aria-describedby="emailHelp">
@@ -43,8 +43,9 @@
 {{!-- Handling the form values (and dynamic created values of ingredients) in a axios post  --}}
 <script type="text/JavaScript">
 
-  function submitHandler(){
+  function submitHandler(event){
     console.log('Works Yayyy!')
+    //event.preventDefault();
     let elemenUnit = document.getElementsByName('ingrUnit')
     let elemenName = document.getElementsByName('ingrName')
     let elemenAmount = document.getElementsByName('ingrAmount')
@@ -54,7 +55,7 @@
     let elemenMealType = document.getElementById('mealType').value;
     let elemenTime = document.getElementById('time').value;
     let elemenPrice = document.getElementById('price').value;
-    let elemenImage = document.getElementById('image').value;
+    let elemenImage = document.getElementById('ourImage').innerHTML;
     let elemenCreator = document.getElementById('creator').value;
     let elemenSource = document.getElementById('source').value;
 
@@ -84,6 +85,9 @@
   axios.post('http://localhost:3000/create', {newIngredients, elemenRecipeName, elemenDescription,
     elemenInstructions, elemenMealType, elemenTime, elemenPrice, elemenImage, elemenCreator, elemenSource})
   }
+  {{!-- .then((result) => {
+    console.log(result.data)
+  }) --}}
 
   // create dynamic field for ingredients (name, unit, amount)
   function createNewElement() {
@@ -155,7 +159,10 @@
     <label for="exampleInputPassword2" class="form-label">Image</label>
     <a href="/upload">Upload a picture</a>
     <input name="image" type="text" class="form-control" id="image" placeholder="{{pictureUploaded}}">
-  
+    <h5 id="ourImage">{{pictureUploaded}}</h5>
+    {{#if pictureUploaded}}
+    <img src="{{pictureUploaded}}">
+    {{/if}}
     {{!-- <form method="POST" action="/upload" enctype="multipart/form-data"> --}}
       {{!-- <input type="file" name="image" id="image" accept="image/png, image/jpg"> --}}
       {{!-- <button type="submit">Add Photo</button>  --}}
@@ -169,7 +176,7 @@
     <label for="exampleInputPassword2" class="form-label">Source</label>
     <input name="source" type="text" class="form-control" id="source">
   </div>
-  <button type="submit" class="mt-5 w-100 btn btn-lg btn-primary bg-lgtblue" onclick="submitHandler();">Create!</button>
+  <button type="submit" class="mt-5 w-100 btn btn-lg btn-primary bg-lgtblue" onclick="submitHandler(event);">Create!</button>
 </form>
 
 
