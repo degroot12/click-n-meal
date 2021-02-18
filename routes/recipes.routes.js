@@ -16,6 +16,7 @@ const checkLoggedInUser = (req, res, next) => {
 
 // GET create
 router.get('/create', checkLoggedInUser, (req, res, next) => {
+  console.log('----Usermodel',UserModel)
   let username = req.session.loggedInUser.username;
 
   let pictureUploaded 
@@ -56,7 +57,7 @@ router.post('/create', (req, res, next) => {
     image: elemenImage
   }
   const msg = 'Your recipe has succesfully been created'
-
+  
   console.log('check here')
   
   RecipeModel.create(newRecipe)
@@ -64,8 +65,8 @@ router.post('/create', (req, res, next) => {
     //   // after creating, show message of succesfully created     
     //   // render does not work because of using axios.post in handlebar 'create' 
     console.log('-----', UserModel)
-      // UserModel.findOneAndUpdate({creator: username}, {favoRecipe: newRecipe}, {new: true})
-      // //console.log(newRecipe)
+      //UserModel.findOneAndUpdate({creator: username}, {favoRecipe: newRecipe}, {new: true})
+      //console.log(newRecipe)
       userPerson.favoRecipe.push(newRecipe)
       console.log(userPerson.favoRecipe)
     })

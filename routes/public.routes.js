@@ -231,6 +231,18 @@ router.get('/selector', (req, res) => {
   })
 })
 
+router.post('/selector/random', (req, res, next) => {
+  console.log('hallooooooo')
+  RecipeModel.find()
+    .then((allRecipe) => {
+      let randomId = Math.floor(Math.random() * Math.floor(allRecipe.length))
+      res.redirect(`/recipe/${allRecipe[randomId]._id}`)//console.log(allRecipe[0]._id)
+    })
+    .catch(() => {
+
+    })
+
+})
 
 
 // GET Route for about page

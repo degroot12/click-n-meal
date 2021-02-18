@@ -73,7 +73,9 @@
   <a class="filterLink allMeals" href="/search?maxPrice=cheap">Cheap</a>
 </div>
 <div class="allFilterLinks">
-  <a class="randomRecLink" href="/recipe/{{id}}">Give me a random recipe</a>
+  <form action="/selector/random" method="POST">
+    <button type="submit" class="mt-2 w-100 btn btn-lg btn-primary bg-lgtred">Give me a random recipe</button>
+  </form>
 </div>
 {{#if msgRecipeDel}}
   <div class="m-5 mb-2 alert alert-warning">{{msgRecipeDel}}</div>
