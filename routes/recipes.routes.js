@@ -133,13 +133,14 @@ router.post('/edit/:id', (req, res, next) => {
 // POST /recipe/delete
 router.post('/recipe/delete/:id', (req, res, next) => {
   const id = req.params.id;
-  const msgDeleted = decodeURIComponent('Your recipe is succesfully deleted!')
+  const msgRecipeDeleted = decodeURIComponent('Your recipe is succesfully deleted!')
   console.log('check delete ---------------')
 
   RecipeModel.findByIdAndDelete(id)
     .then(() => {
-      res.redirect(`/selector`)
-      // res.redirect(`/selector/${id}/?passMsgEdit=${msgDeleted}`)
+      res.redirect('/selector')
+
+      // res.redirect(`/selector/?passMsgDeleted=${msgRecipeDeleted}`)
 
       console.log('deleted ok')
     })

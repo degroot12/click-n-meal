@@ -185,6 +185,8 @@ router.post('/selector', (req, res) => {
 
 router.get('/selector', (req, res) => {
   console.log('req body------', req.query)
+  console.log('select ', req.body)
+  // console.log('select ', req.body.passMsgDeleted) 
   
   RecipeModel.find()
   .then((recipes) => {
