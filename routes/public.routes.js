@@ -25,7 +25,6 @@ router.get('/',(req, res, next) => {
 // GET Route for recipe page
 router.get('/recipe/:id', (req, res, next) => {
   const id = req.params.id
-  console.log('req body------', req.query)
   
   // if msg needs to be appear after creating new recipe
   let msgNewRecipeCreated 
@@ -185,7 +184,8 @@ router.post('/selector', (req, res) => {
 
 
 router.get('/selector', (req, res) => {
-
+  console.log('req body------', req.query)
+  
   RecipeModel.find()
   .then((recipes) => {
     res.render('public/selector.hbs', {recipes})

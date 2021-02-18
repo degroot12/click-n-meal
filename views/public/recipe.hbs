@@ -4,6 +4,10 @@
   <div class="m-5 mb-2 alert alert-warning">{{msgNewRecipeCreated}} or go back <a href="/selector">home</a> to review all the recipes</div>
 {{/if}}
 
+{{#if msgDeleted}}
+  <div class="m-5 mb-2 alert alert-warning">{{msgDeleted}} </div>
+{{/if}}
+
   <div class="container mt-3">
       <div class="col-md-4">
         <div class="card">
@@ -27,7 +31,15 @@
                 <a href="/edit/{{recipe.id}}" ><button type="submit" class="mt-2 w-100 btn btn-lg btn-primary bg-lgtblue">Edit</button></a>
               </div>
               <div class="col">
-                <a href="/selector"><button type="submit" class="mt-2 w-100 btn btn-lg btn-primary bg-lgtred">Delete</button></a>
+                      <td><form action="/recipe/delete/{{recipe.id}}" method="POST">
+                    <button type="submit" class="btn btn-danger">Delete</button>
+                  </form></td>
+
+
+                {{!-- <form action="/recipe/delete/{{recipe.id}}" method="POST"></form>
+                <button type="submit" class="mt-2 w-100 btn btn-lg btn-primary bg-lgtred">Delete</button>
+                <form> --}}
+
               </div>
             </div>
             

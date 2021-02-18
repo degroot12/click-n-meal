@@ -102,7 +102,7 @@ router.post('/edit/:id', (req, res, next) => {
 
   // price, image, instructions, creator, source
   console.log('editR: ', editedRecipe)
-  const msgEdit = 'Your recipe has succesfully been edited'
+  const msgEdit = 'Your recipe is succesfully updated!'
 
   RecipeModel.findByIdAndUpdate(id, editedRecipe)
     .then(() => {
@@ -112,6 +112,25 @@ router.post('/edit/:id', (req, res, next) => {
     .catch((err) => {
       next(err)
     })
+})
+
+// POST /recipe/delete
+router.post('/recipe/delete/:id', (req, res, next) => {
+  const id = req.params.id;
+  const msgDeleted = decodeURIComponent('Your recipe is succesfully deleted!')
+  console.log('check delete ---------------')
+
+  RecipeModel.findByIdAndDelete(id)
+    .then(() => {
+      res.redirect(`/selector`)
+      // res.redirect(`/selector/${id}/?passMsgEdit=${msgDeleted}`)
+
+      console.log('deleted ok')
+    })
+    .catch((err) => {
+      next(err)
+    })
+
 })
 
 //GET ROUTE FOR UPLOADING
