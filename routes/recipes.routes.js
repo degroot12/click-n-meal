@@ -138,9 +138,7 @@ router.post('/recipe/delete/:id', (req, res, next) => {
 
   RecipeModel.findByIdAndDelete(id)
     .then(() => {
-      res.redirect('/selector')
-
-      // res.redirect(`/selector/?passMsgDeleted=${msgRecipeDeleted}`)
+      res.redirect(`/selector/?passMsgDeleted=${msgRecipeDeleted}`)      
 
       console.log('deleted ok')
     })

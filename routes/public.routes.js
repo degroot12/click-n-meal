@@ -8,6 +8,7 @@ const RecipeModel = require('../models/Recipe.model.js')
 // const test = require("../public/js/script.js")
 
 //
+
 const checkLoggedInUserHome = (req, res, next) => {
   if(!req.session.loggedInUser){
     next();
@@ -27,20 +28,39 @@ router.get('/recipe/:id', (req, res, next) => {
   const id = req.params.id
   
   // if msg needs to be appear after creating new recipe
-  let msgNewRecipeCreated 
-  if (Object.keys(req.query).length!=0) {
-    msgNewRecipeCreated = req.query.passMsgEdit
-  }
+  // let msgNewRecipeCreated 
+  // if (Object.keys(req.query).length!=0) {
+  //   msgNewRecipeCreated = req.query.passMsgEdit
+  // }
+  // console.log(msgNewRecipeCreated)
 
+
+  // message when recipe is updates
   let msgEditRecipe
   if (Object.keys(req.query).length!=0) {
-    msgEditRecipe = req.query.msgEdit
+    msgEditRecipe = req.query.passMsgEdit
   }
+  // console.log('===msgEdit recipe', msgEditRecipe)
 
   RecipeModel.findById(id)
     .then((recipe) => {
-      console.log(recipe.image)
-      res.render('public/recipe.hbs', {recipe, msgNewRecipeCreated})
+   
+      // show only edit button when logged in
+      let userLoggedIn
+      let creatorLoggedIn
+
+      if (req.session.loggedInUser) {
+        userLoggedIn = true
+        console.log('A userlogged in: ', userLoggedIn)
+
+      // show only delete button when logged in  
+        if (req.session.loggedInUser.username == recipe.creator) {
+          creatorLoggedIn = true
+          console.log('A userlogged in: ', creatorLoggedIn)
+        }
+      }
+
+      res.render('public/recipe.hbs', {recipe, msgEditRecipe, userLoggedIn, creatorLoggedIn})
     })
     .catch((err) => {
       next(err)
@@ -191,16 +211,17 @@ router.post('/selector', (req, res) => {
 
 
 router.get('/selector', (req, res) => {
+  let msgRecipeDel = req.query.passMsgDeleted
 
   RecipeModel.find()
   .then((recipes) => {
       if (Object.keys(req.query).length!=0) {
         res.render('public/selector.hbs', {recipes, msgRecipeDel})
-        console.log('check1')
+        // console.log('check1')
       }
       else {
         res.render('public/selector.hbs', {recipes})
-        console.log('check2')
+        // console.log('check2')
       }   
 
     
