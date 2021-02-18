@@ -117,7 +117,7 @@ router.post('/edit/:id', (req, res, next) => {
   }
 
   // price, image, instructions, creator, source
-  console.log('editR: ', editedRecipe)
+  // console.log('editR: ', editedRecipe)
   const msgEdit = 'Your recipe is succesfully updated!'
 
   RecipeModel.findByIdAndUpdate(id, editedRecipe)
@@ -138,9 +138,8 @@ router.post('/recipe/delete/:id', (req, res, next) => {
 
   RecipeModel.findByIdAndDelete(id)
     .then(() => {
-      res.redirect('/selector')
-
-      // res.redirect(`/selector/?passMsgDeleted=${msgRecipeDeleted}`)
+      // res.redirect('/selector')
+      res.redirect(`/selector/?passMsgDeleted=${msgRecipeDeleted}`)      
 
       console.log('deleted ok')
     })
