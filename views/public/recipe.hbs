@@ -31,13 +31,19 @@
             {{/each}} 
 
             <div class="row mt-3">
+              {{#if userLoggedIn}}
               <div class="col">
                 <a href="/edit/{{recipe.id}}" ><button type="submit" class="mt-2 w-100 btn btn-lg btn-primary bg-lgtblue">Edit</button></a>
               </div>
+              {{/if}}
+
+              {{#if creatorLoggedIn}}
               <div class="col">
-                      <td><form action="/recipe/delete/{{recipe.id}}" method="POST">
-                    <button type="submit" class="mt-2 w-100 btn btn-lg btn-primary bg-lgtred">Delete</button>
-                  </form></td>
+                <form action="/recipe/delete/{{recipe.id}}" method="POST">
+                  <button type="submit" class="mt-2 w-100 btn btn-lg btn-primary bg-lgtred">Delete</button>
+                </form>
+              {{/if}}
+
               </div>
             </div>            
           </div>

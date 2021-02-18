@@ -8,6 +8,7 @@ const RecipeModel = require('../models/Recipe.model.js')
 // const test = require("../public/js/script.js")
 
 //
+
 const checkLoggedInUserHome = (req, res, next) => {
   if(!req.session.loggedInUser){
     next();
@@ -33,18 +34,33 @@ router.get('/recipe/:id', (req, res, next) => {
   // }
   // console.log(msgNewRecipeCreated)
 
-  console.log('###========= ', req.session)
 
+  // message when recipe is updates
   let msgEditRecipe
   if (Object.keys(req.query).length!=0) {
     msgEditRecipe = req.query.passMsgEdit
   }
-  console.log('===', msgEditRecipe)
+  // console.log('===msgEdit recipe', msgEditRecipe)
 
   RecipeModel.findById(id)
     .then((recipe) => {
-      console.log(recipe.image)
-      res.render('public/recipe.hbs', {recipe, msgEditRecipe})
+   
+      // show only edit button when logged in
+      let userLoggedIn
+      let creatorLoggedIn
+
+      if (req.session.loggedInUser) {
+        userLoggedIn = true
+        console.log('A userlogged in: ', userLoggedIn)
+
+      // show only delete button when logged in  
+        if (req.session.loggedInUser.username == recipe.creator) {
+          creatorLoggedIn = true
+          console.log('A userlogged in: ', creatorLoggedIn)
+        }
+      }
+
+      res.render('public/recipe.hbs', {recipe, msgEditRecipe, userLoggedIn, creatorLoggedIn})
     })
     .catch((err) => {
       next(err)
@@ -205,15 +221,10 @@ router.get('/selector', (req, res) => {
       }
       else {
         res.render('public/selector.hbs', {recipes})
-<<<<<<< HEAD
         // console.log('check2')
-      }       
-=======
-        console.log('check2')
       }   
 
     
->>>>>>> origin/main
   })
   .catch((err) => {                                                                                                                                                                                                
     next(err)
