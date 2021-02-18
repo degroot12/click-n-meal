@@ -5,7 +5,6 @@ const axios = require('axios')
 
 // POST route for create
 router.post('/create', (req, res, next) => {
-
   const {newIngredients, elemenRecipeName, elemenDescription,
     elemenInstructions, elemenMealType, elemenTime, elemenPrice, elemenImage, elemenCreator, elemenSource} = req.body
   const newRecipe = {
@@ -20,6 +19,7 @@ router.post('/create', (req, res, next) => {
     instructions: elemenInstructions,
     image: elemenImage
   }
+  console.log(newRecipe.image)
   RecipeModel.create(newRecipe)
     .then(() => {
       res.render('private/create.hbs', {msg: 'Your recipe has succesfully been created!'})

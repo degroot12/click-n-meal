@@ -3,6 +3,7 @@ const bcrypt = require('bcryptjs');
 const UserModel = require('../models/User.model.js')
 const IngredientsModel = require('../models/Ingredients.model.js')
 const RecipeModel = require('../models/Recipe.model.js')
+const uploader = require('../middlewares/cloudinary.config');
 
 // GET Route Sign-up Page
 router.get('/signup', (req, res, next) => {
@@ -147,6 +148,25 @@ router.post('/edit/:id', checkLoggedInUser, (req, res, next) => {
 //   let email = req.session.loggedInUser.email;
 //   res.render('public/selector.hbs', {email})
 // })
+
+//GET ROUTE FOR UPLOADING PHOTO
+router.get('/upload', (req, res, next) => {
+  res.render('private/uploading.hbs')
+})
+
+// POST ROUTE OR CLOUDINARY UPLOAD
+router.post('/upload', uploader.single('image'), (req, res, next) => {
+  console.log('pic info',req.file)
+  let picUrl = req.file.path
+  const picSend = encodeURIComponent(picUrl)
+  console.log('The is the pic we want to send', picSend)
+  console.log(decodeURIComponent(picSend))
+  res.redirect('/create/?picture=' + picSend)
+  // RecipeModel.findByIdAndUpdate(req.session.recipe._id, {recipePic:req.file.path})
+  //   .then(() => {
+  //     res.redirect('/create')
+  //   })
+})
 
 
 // LOGOUT

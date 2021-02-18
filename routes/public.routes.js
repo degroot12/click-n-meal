@@ -18,6 +18,7 @@ const checkLoggedInUserHome = (req, res, next) => {
 
 // GET route for the Starter page
 router.get('/', checkLoggedInUserHome,(req, res, next) => {
+  console.log('-------------COMING HERE---------------')
   res.redirect('/selector')
 });
 
@@ -103,11 +104,11 @@ router.get('/search', (req, res, next) => {
       
 });
 
-// {mealType:"vegan"}, {mealType:"meat"} 
-// GET Route for Selector page
-router.get('/selector', (req, res, next) => {
+router.get('/fakeapi', (req, res) => {
+  let {isVegan: veganOn, maxTime, maxPrice} = req.query
+
   let mealTypeArr = {} //default filter
-  let veganOn = req.query.isVegan
+
   // if(veganOn === undefined){
   //   mealTypeArr = {}
   // }
@@ -117,14 +118,14 @@ router.get('/selector', (req, res, next) => {
     console.log('vegan true')
   }
   else if (veganOn == "veganOff") {
-    mealTypeArr = {mealType:"meat"}
+    mealTypeArr = {}
     console.log('vegan false')
   }
   // console.log('mealtype:', mealTypeArr)
 
 
   let timeArr = {} //default filter
-  let maxTime = req.query.maxTime
+
   console.log('maxTime: ', maxTime)
   if (maxTime == "shortTime") {
     timeArr = {time: {$lt: 15}}
@@ -137,7 +138,7 @@ router.get('/selector', (req, res, next) => {
   console.log('time:', timeArr)
 
   let priceArr = {} //default filter
-  let maxPrice = req.query.maxPrice
+  
   console.log('maxPrice: ', maxPrice)
   if (maxPrice == "lowPrice") {
     priceArr = {priceCategory:'cheap'}
@@ -147,23 +148,35 @@ router.get('/selector', (req, res, next) => {
     priceArr = {priceCategory:'normal'}
     console.log('price all')
   }
-  // else if(maxPrice == 'highPrice'){
-  //   timeArr = {priceCategory: 'expensive'}
-  //   console.log('price expensive')
-  // }
-  console.log('price:', priceArr)
 
   let query = `isVegan=${veganOn}&maxTime=${maxTime}&maxPrice=${maxPrice}`
-
   RecipeModel.find({$and: [mealTypeArr, timeArr, priceArr] })
   .then((recipes) => {
     // console.log(recipes)
-    res.render('public/selector.hbs', {recipes, query})
-    console.log(recipes, query)
+    console.log(recipes.length)
+    let data = recipes
+    //res.redirect(`/fakeapi?isVegan=${veganOn}&maxTime=${maxTime}&maxPrice=${maxPrice}`)
+    res.render('public/selector.hbs', {recipes:data, query, length: recipes.length})
+    //console.log(recipes, query)
   })
   .catch((err) => {                                                                                                                                                                                                
     next(err)
   })
+})
+
+// {mealType:"vegan"}, {mealType:"meat"} 
+// GET Route for SeleÍctor page
+router.get('/selector', (req, res, next) => {
+  
+  // else if(maxPrice == 'highPrice'){
+  //   timeArr = {priceCategory: 'expensive'}
+  //   console.log('price expensive')
+  // }
+  let {isVegan: veganOn, maxTime, maxPrice} = req.query
+  console.log('HERE')
+  let url = `/fakeapi?isVegan=${veganOn}&maxTime=${maxTime}&maxPrice=${maxPrice}`
+  res.redirect(url)
+
 });
 
 

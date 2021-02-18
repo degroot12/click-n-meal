@@ -25,8 +25,8 @@ function handleCheckbox() {
   }
 
   //axios.get(`http://localhost:3000/search?isVegan=${veganOn}&maxTime=${timeFilter}&maxPrice=${priceFilter}`)
-  axios.get(`https://click-n-meal.herokuapp.com/selector?isVegan=${veganOn}&maxTime=${timeFilter}&maxPrice=${priceFilter}`)
-  
+  //axios.get(`https://click-n-meal.herokuapp.com/selector?isVegan=${veganOn}&maxTime=${timeFilter}&maxPrice=${priceFilter}`)
+  axios.get(`http://localhost:3000/selector?isVegan=${veganOn}&maxTime=${timeFilter}&maxPrice=${priceFilter}`)
   
 };
 // function setCheckboxInitialState(){
