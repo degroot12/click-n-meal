@@ -27,20 +27,24 @@ router.get('/recipe/:id', (req, res, next) => {
   const id = req.params.id
   
   // if msg needs to be appear after creating new recipe
-  let msgNewRecipeCreated 
-  if (Object.keys(req.query).length!=0) {
-    msgNewRecipeCreated = req.query.passMsgEdit
-  }
+  // let msgNewRecipeCreated 
+  // if (Object.keys(req.query).length!=0) {
+  //   msgNewRecipeCreated = req.query.passMsgEdit
+  // }
+  // console.log(msgNewRecipeCreated)
+
+  console.log('###: ', req.query)
 
   let msgEditRecipe
   if (Object.keys(req.query).length!=0) {
-    msgEditRecipe = req.query.msgEdit
+    msgEditRecipe = req.query.passMsgEdit
   }
+  console.log('===', msgEditRecipe)
 
   RecipeModel.findById(id)
     .then((recipe) => {
       console.log(recipe.image)
-      res.render('public/recipe.hbs', {recipe, msgNewRecipeCreated})
+      res.render('public/recipe.hbs', {recipe, msgEditRecipe})
     })
     .catch((err) => {
       next(err)
@@ -184,18 +188,18 @@ router.post('/selector', (req, res) => {
 
 
 router.get('/selector', (req, res) => {
+  let msgRecipeDel = req.query.passMsgDeleted
 
   RecipeModel.find()
   .then((recipes) => {
       if (Object.keys(req.query).length!=0) {
         res.render('public/selector.hbs', {recipes, msgRecipeDel})
-        console.log('check1')
+        // console.log('check1')
       }
       else {
         res.render('public/selector.hbs', {recipes})
-        console.log('check2')
-      }   
-    
+        // console.log('check2')
+      }       
   })
   .catch((err) => {                                                                                                                                                                                                
     next(err)
