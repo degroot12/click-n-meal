@@ -1,7 +1,7 @@
 <h6 class="text-center">Welcome, {{username}}</h6>
 <h1 class="text-center">Create your own recipe!</h1>
  {{!-- method="POST" action='/create' --}}
-<form>
+<form  method="POST" action='/create'>
   <div class="mb-3">
     <label for="exampleInputEmail1" class="form-label">Name</label>
     <input name="recipeName" type="text" class="form-control" id="recipeName" aria-describedby="emailHelp">
@@ -154,7 +154,7 @@
   <div class="mb-3">
     <label for="exampleInputPassword2" class="form-label">Image</label>
     <a href="/upload">Upload a picture</a>
-    <input name="image" type="text" class="form-control" id="image" value="{{pictureUploaded}}" placeholder="{{pictureUploaded}}">
+    <input name="image" type="text" class="form-control" id="image" placeholder="{{pictureUploaded}}">
   
     {{!-- <form method="POST" action="/upload" enctype="multipart/form-data"> --}}
       {{!-- <input type="file" name="image" id="image" accept="image/png, image/jpg"> --}}

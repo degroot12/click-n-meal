@@ -9,7 +9,7 @@
       <label class="custom-control-label" for="customSwitches">Time</label>
       <input name="priceValue" id="priceFilter" type="checkbox" onchange="handleCheckbox()" class="custom-control-input">
       <label class="custom-control-label" for="customSwitches">Price</label>
-      <a href="/search?{{query}}">Filter</a>
+      <a href="/search?isVegan={{queryObj.veganOn}}&maxTime={{queryObj.maxTime}}&maxPrice={{queryObj.maxPrice}}">Filter</a>
     </div>
  
     </div>
@@ -38,8 +38,8 @@
   </div><br>
 </div>
 
-{{#each recipes}}
+{{!-- {{#each recipes}}
   <h4>{{this.title}}</h4>
-{{/each}}
+{{/each}} --}}
 
 <script src="js/filterRecipe.js"></script>
