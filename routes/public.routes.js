@@ -184,13 +184,17 @@ router.post('/selector', (req, res) => {
 
 
 router.get('/selector', (req, res) => {
-  console.log('req body------', req.query)
-  console.log('select ', req.body)
-  // console.log('select ', req.body.passMsgDeleted) 
-  
+
   RecipeModel.find()
   .then((recipes) => {
-    res.render('public/selector.hbs', {recipes})
+      if (Object.keys(req.query).length!=0) {
+        res.render('public/selector.hbs', {recipes, msgRecipeDel})
+        console.log('check1')
+      }
+      else {
+        res.render('public/selector.hbs', {recipes})
+        console.log('check2')
+      }   
     
   })
   .catch((err) => {                                                                                                                                                                                                
