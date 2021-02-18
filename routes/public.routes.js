@@ -33,7 +33,7 @@ router.get('/recipe/:id', (req, res, next) => {
   // }
   // console.log(msgNewRecipeCreated)
 
-  console.log('###: ', req.query)
+  console.log('###========= ', req.session)
 
   let msgEditRecipe
   if (Object.keys(req.query).length!=0) {
