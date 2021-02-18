@@ -29,7 +29,12 @@ router.get('/recipe/:id', (req, res, next) => {
   // if msg needs to be appear after creating new recipe
   let msgNewRecipeCreated 
   if (Object.keys(req.query).length!=0) {
-    msgNewRecipeCreated = req.query.passMsg
+    msgNewRecipeCreated = req.query.passMsgEdit
+  }
+
+  let msgEditRecipe
+  if (Object.keys(req.query).length!=0) {
+    msgEditRecipe = req.query.msgEdit
   }
 
   RecipeModel.findById(id)
@@ -179,7 +184,8 @@ router.post('/selector', (req, res) => {
 
 
 router.get('/selector', (req, res) => {
-
+  console.log('req body------', req.query)
+  
   RecipeModel.find()
   .then((recipes) => {
     res.render('public/selector.hbs', {recipes})

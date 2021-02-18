@@ -85,7 +85,7 @@ router.post('/create', (req, res, next) => {
 
 })
 
-// GET /edit
+// GET /edit/:id
 router.get('/edit/:id', checkLoggedInUser, (req, res, next) => {
   let username = req.session.loggedInUser.username;
   const id = req.params.id
@@ -104,26 +104,49 @@ router.get('/edit/:id', checkLoggedInUser, (req, res, next) => {
 //POST route for editing
 router.post('/edit/:id', (req, res, next) => {
   const id = req.params.id;
-  const {name, description, ingredients, ingrAmount, ingrUnit, mealType, time, price, image, instructions, creator, source} = req.body
-  
+ 
+  // todo: adding updating drop down list 
   const editedRecipe = {
-    name:name, 
-    // description:description,
-    // ingredients:{
-    //   name: ingredients,
-    //   amount: ingrAmount,
-    //   unit: ingrUnit
-    // }, mealType, time, price, image, instructions, creator, source
+    name:req.body.recipeName, 
+    description:req.body.description,
+    // mealType: req.body.mealType, 
+    time: req.body.time,
+    // price: req.body.price,
+    instructions: req.body.instructions,
+    source: req.body.source   
   }
-  console.log('check 1')
+
+  // price, image, instructions, creator, source
+  console.log('editR: ', editedRecipe)
+  const msgEdit = 'Your recipe is succesfully updated!'
+
   RecipeModel.findByIdAndUpdate(id, editedRecipe)
     .then(() => {
-      res.redirect(`/recipe/${id}`)
-      console.log('check 2')
+      res.redirect(`/recipe/${id}/?passMsgEdit=${msgEdit}`)
+      console.log('check 2: ', editedRecipe, msgEdit)
     })
     .catch((err) => {
       next(err)
     })
+})
+
+// POST /recipe/delete
+router.post('/recipe/delete/:id', (req, res, next) => {
+  const id = req.params.id;
+  const msgDeleted = decodeURIComponent('Your recipe is succesfully deleted!')
+  console.log('check delete ---------------')
+
+  RecipeModel.findByIdAndDelete(id)
+    .then(() => {
+      res.redirect(`/selector`)
+      // res.redirect(`/selector/${id}/?passMsgEdit=${msgDeleted}`)
+
+      console.log('deleted ok')
+    })
+    .catch((err) => {
+      next(err)
+    })
+
 })
 
 //GET ROUTE FOR UPLOADING
