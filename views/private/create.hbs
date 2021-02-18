@@ -1,6 +1,13 @@
 <h6 class="text-center">Welcome, {{username}}</h6>
 <h1 class="text-center">Create your own recipe!</h1>
  {{!-- method="POST" action='/create' --}}
+
+{{#if msg}}
+  <div class="m-5 mb-2 alert alert-warning">{{msg}} or go back <a href="/selector">home</a> to review all the recipes</div>
+{{/if}}
+{{msg}}
+
+
 <form  >
   <div class="mb-3">
     <label for="exampleInputEmail1" class="form-label">Name</label>
