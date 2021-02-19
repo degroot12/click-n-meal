@@ -99,6 +99,7 @@ h1 {
 	background-color: #36b3c9;
 	border-color: #36b3c9;
 }
+
 /* End button style ---------------------*/
 
 /* background styles --------------------*/
@@ -162,6 +163,8 @@ h1 {
    text-decoration: none;
    border: #e77070;
    margin: 5px;
+   border: 1px solid;
+
  }
 
  .allFilterLinks{
@@ -171,10 +174,12 @@ h1 {
 
  .veganLink{
    color: #50ce93;
+   border-color: #50ce93
  }
 
  .allMeals{
    color: #312c17;
+   border-color: #312c17
  }
 
  .container {
