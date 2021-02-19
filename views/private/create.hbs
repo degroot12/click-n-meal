@@ -1,4 +1,4 @@
-<p class="text-center text-lggreen">Welcome {{username}} at My Recipe</p>
+<p class="text-center text-lggreen">Welcome {{username}} at Create Recipe</p>
 <h1 class="text-center">Create your own recipe!</h1>
  {{!-- method="POST" action='/create' --}}
 
@@ -6,8 +6,9 @@
   <div class="m-5 mb-2 alert alert-warning">{{msg}} or go back <a href="/selector">home</a> to review all the recipes</div>
 {{/if}}
 
-
-<form  >
+<div class="container mt-5">
+  <div class="col col-md-4">
+    <form  >
     <div class="mb-3">
     <label for="exampleInputPassword2" class="form-label">Image</label>
     <a href="/upload">Upload a picture</a>
@@ -184,6 +185,10 @@
     <input name="source" type="text" class="form-control" id="source">
   </div>
   <button type="submit" class="mt-5 w-100 btn btn-lg btn-primary bg-lgtblue" onclick="submitHandler(event);">Create!</button>
-</form>
+    </form>
+  </div>
+</div>
+
+
 
 
