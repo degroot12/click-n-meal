@@ -12,6 +12,15 @@ body {
   padding-top: 5em;
 }
 
+/*media queries*/
+/* for the pictures*/
+@media (min-width: 768px) {
+  .col{
+    width: 50%;
+  }
+}
+
+
 /* for setting the dropdown list form*/
 select, option { 
   width: 200px; 
