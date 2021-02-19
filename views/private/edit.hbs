@@ -108,6 +108,7 @@ for (let i = 0; i < ingUnit.length; i++ ){
   newIngredients.push(Ingr)
 }
 //https://click-n-meal.herokuapp.com/create
+//localhost
 console.log('testname: ', elemenRecipeName)
 axios.post('https://click-n-meal.herokuapp.com/create', {newIngredients, elemenRecipeName, elemenDescription,
   elemenInstructions, elemenMealType, elemenTime, elemenPrice, elemenImage, elemenCreator, elemenSource})
