@@ -28,22 +28,24 @@
 
   <div class="container mt-3">
       <div class="col col-md-4">
+        {{#each recipesCreated}}
         <div class="card">
           <div class="image">
-            <img src= "{{recipesCreated.image}}" />
+            <img src= "{{this.image}}" />
           </div>
           <div class="card-block">
-            <h2 class="card-title">{{recipesCreated.name}}</h2>
-            <h5 class="card-subtitle text-muted">{{recipesCreated.time}} min, {{recipesCreated.mealType}}, {{recipesCreated.priceCategory}}</h5>
-            <h6>Created by: {{recipesCreated.creator}}</h6>
-            <p class="card-text p-y-1">{{recipesCreated.description}}</p>
-            <p class="card-text p-y-1">{{recipesCreated.instructions}}</p>
+            <h2 class="card-title">{{this.name}}</h2>
+            <h5 class="card-subtitle text-muted">{{this.time}} min, {{this.mealType}}, {{this.priceCategory}}</h5>
+            <h6>Created by: {{this.creator}}</h6>
+            <p class="card-text p-y-1">{{this.description}}</p>
+            <p class="card-text p-y-1">{{this.instructions}}</p>
             <h5>Ingredients</h5> 
-            {{#each recipesCreated.ingredients}}
+            {{#each this.ingredients}}
               <div>{{amount}} {{unit}} {{this.name}}</div>
             {{/each}} 
               </div>
-            </div>            
+            </div>
+            {{/each}}            
           </div>
         </div>
       </div>
