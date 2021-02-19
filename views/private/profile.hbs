@@ -1,12 +1,12 @@
 
 <div class="topText">
   <h3>Welcome, {{username}}</h3>
-  <p class="text-center text-lggreen">at the My Recipes</p6>
+  <p class="text-center text-lggreen">at the My recipesCreated</p6>
   <br>
   <h5>My created recipes:</h5>
 </div>
 
-<div class="container">
+{{!-- <div class="container">
   <div class="row hidden-md-up">
     <div class="col col-md-4">
       {{#each recipesCreated}}
@@ -18,12 +18,35 @@
           <h4 class="card-title">{{this.name}}</h4>
           <h6 class="card-subtitle text-muted">{{this.time}} min, {{this.mealType}}</h6>
           <p class="card-text p-y-1">{{this.description}}</p>
-          <div class="text-center">
-            <a href="/recipe/{{this.name}}" role="botton" class="w-40 mb-2 mt-3 center btn btn-lg btn-primary bg-lgtblue">Open</a>
-          </div>
         </div>
       </div>
       {{/each}}
     </div>
   </div><br>
-</div>
+</div> --}}
+
+
+  <div class="container mt-3">
+      <div class="col col-md-4">
+        <div class="card">
+          <div class="image">
+            <img src= "{{recipesCreated.image}}" />
+          </div>
+          <div class="card-block">
+            <h2 class="card-title">{{recipesCreated.name}}</h2>
+            <h5 class="card-subtitle text-muted">{{recipesCreated.time}} min, {{recipesCreated.mealType}}, {{recipesCreated.priceCategory}}</h5>
+            <h6>Created by: {{recipesCreated.creator}}</h6>
+            <p class="card-text p-y-1">{{recipesCreated.description}}</p>
+            <p class="card-text p-y-1">{{recipesCreated.instructions}}</p>
+            <h5>Ingredients</h5> 
+            {{#each recipesCreated.ingredients}}
+              <div>{{amount}} {{unit}} {{this.name}}</div>
+            {{/each}} 
+              </div>
+            </div>            
+          </div>
+        </div>
+      </div>
+  </div>
+
+
