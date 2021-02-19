@@ -25,12 +25,16 @@ body {
   color: #009688
 }
 
+.text-lgblue{
+  color: #0099cc
+}
+
 /* for setting the dropdown list form*/
 select, option { 
   width: 200px; 
 }
 a {
-  color: #00b7ff; }
+  color: #d1d1d1; }
 
 h1 {
   color: 15px; }
