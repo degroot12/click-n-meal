@@ -65,18 +65,25 @@
          </ul>
       </div> --}}
 
-<div class="allFilterLinks">
-  <a class="filterLink veganLink" href="/search?isVegan=veganOn">Vegan</a>
-  <a class="filterLink veganLink" href="/search?isVegan=veganOn&maxTime=shortTime">FastVegan</a>
-  <a class="filterLink veganLink" href="/search?isVegan=veganOn&maxPrice=cheap">CheapVegan</a>
-  <a class="filterLink allMeals" href="/search?maxTime=shortTime">Fast</a>
-  <a class="filterLink allMeals" href="/search?maxPrice=cheap">Cheap</a>
+
+<div class="container">
+  <div class="col allFilterLinks mt-4 ">
+      <a class="btn-sm btn-outline-success filterLink veganLink" role="button" href="/search?isVegan=veganOn">Vegan</a>
+      <a class="btn-sm btn-outline-success filterLink veganLink" role="button" href="/search?isVegan=veganOn&maxTime=shortTime">FastVegan</a>
+      <a class="btn-sm btn-outline-success filterLink veganLink" href="/search?isVegan=veganOn&maxPrice=cheap">CheapVegan</a>
+      <a class="btn-sm btn-outline-secondary filterLink allMeals" href="/search?maxTime=shortTime">Fast</a>
+      <a class="btn-sm btn-outline-secondary filterLink allMeals" href="/search?maxPrice=cheap">Cheap</a>
+  </div>
 </div>
-<div class="allFilterLinks">
-  <form action="/selector/random" method="POST">
-    <button type="submit" class="mt-2 w-100 btn btn-lg btn-primary bg-lgtred">Give me a random recipe</button>
-  </form>
+
+<div class="container">
+  <div class="allFilterLinks">
+    <form action="/selector/random" method="POST">
+      <button type="submit" class="mt-4 mb-4 w-100 btn btn-lg btn-primary bg-lgtblue btn-sm">I feel like a random recipe!</button>
+    </form>
+  </div>
 </div>
+
 {{#if msgRecipeDel}}
   <div class="m-5 mb-2 alert alert-warning">{{msgRecipeDel}}</div>
 {{/if}}
@@ -103,8 +110,8 @@
   </div><br>
 </div>
 
-{{!-- {{#each recipes}}
+{{#each recipes}}
   <h4>{{this.title}}</h4>
-{{/each}} --}}
+{{/each}}
 
 <script src="js/filterRecipe.js"></script>
