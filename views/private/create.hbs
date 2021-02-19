@@ -13,7 +13,7 @@
     <label for="exampleInputPassword2" class="form-label">Image</label>
     <a href="/upload">Upload a picture</a>
     <input name="image" type="text" class="form-control" id="image" placeholder="{{pictureUploaded}}">
-    <h5 id="ourImage">{{pictureUploaded}}</h5>
+    <p aria-hidden="true" id="ourImage">{{pictureUploaded}}</p>
     {{#if pictureUploaded}}
     <img class="custom-image" src="{{pictureUploaded}}">
     {{/if}}
