@@ -20,6 +20,10 @@ body {
   }
 }
 
+/* text */
+.text-lggreen {
+  color: #009688
+}
 
 /* for setting the dropdown list form*/
 select, option { 
